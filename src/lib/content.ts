@@ -31,6 +31,7 @@ export const eltz = {
     "https://dexscreener.com/base/0x1d16828013717afd3867415642bd8b4ad9ebe0d1f0e08276ccb23f7b0c1280c2",
   basescan:
     "https://basescan.org/token/0xB200000000000000000000B34597aFF8EA532A60",
+  uniswap: `https://app.uniswap.org/explore/tokens/base/0xB200000000000000000000B34597aFF8EA532A60`,
   staking: "https://elitez.app/staking",
   launchpad: "https://elitez.app/b20",
 };
@@ -417,9 +418,9 @@ export const eltzMarkets = [
     body: "ELTZ / ETH pair on Base.",
   },
   {
-    label: "ELTZ Staking",
-    href: eltz.staking,
-    body: "Stake Elitez Chip inside Dream Crafter.",
+    label: "Uniswap",
+    href: eltz.uniswap,
+    body: "Buy and sell $ELTZ on Base.",
   },
   {
     label: "B20 Launchpad",

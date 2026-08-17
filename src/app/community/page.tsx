@@ -43,8 +43,8 @@ export default function CommunityPage() {
             <p className="mt-3 font-mono text-sm break-all">{eltz.address}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               <CopyButton value={eltz.address} label="Copy contract" />
-              <Button href={eltz.staking} variant="ghost" external>
-                Stake
+              <Button href={eltz.uniswap} variant="ghost" external>
+                Buy
               </Button>
               <Button href={eltz.basescan} variant="ghost" external>
                 BaseScan

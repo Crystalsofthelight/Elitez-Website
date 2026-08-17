@@ -114,8 +114,8 @@ export default function TokenPage() {
             </p>
             <div className="mt-5 flex min-w-0 flex-wrap gap-2">
               <CopyButton value={eltz.address} label="Copy contract" />
-              <Button href={eltz.staking} variant="teal" external>
-                Stake in app
+              <Button href={eltz.uniswap} variant="teal" external>
+                Buy on Uniswap
               </Button>
               <Button href={eltz.basescan} variant="ghost" external>
                 BaseScan
