@@ -36,8 +36,11 @@ export default function Home() {
             <Button href="/music" variant="ghost">
               Listen to Elitez
             </Button>
-            <Button href="/token" variant="ghost">
-              $ELITE and $ELTZ
+            <Button href="/elite" variant="ghost">
+              $ELITE
+            </Button>
+            <Button href="/eltz" variant="ghost">
+              $ELTZ
             </Button>
           </div>
           <p className="mt-8 max-w-xl font-serif text-xl text-[#c8b88a] italic">
@@ -192,29 +195,20 @@ export default function Home() {
               />
             </div>
             <div className="p-8 md:p-12">
-              <p className="kicker">$ELITE · $ELTZ</p>
+              <p className="kicker">Tokens</p>
               <h2 className="font-display mt-4 text-3xl md:text-4xl">
                 Built to back the work.
               </h2>
               <p className="mt-5 leading-8 text-[#b7bfc8]">
-                $ELITE is the creator token, with planned burns from a 1
-                trillion start. $ELTZ — Elitez Chip — is a native B20 token
-                with a 1,000,000 supply, used for staking and play. Holding
-                either token does not grant ownership, royalties, or profit
-                rights.
+                $ELITE and $ELTZ are separate assets. Each has its own
+                contract, supply, and page. Holding either token does not grant
+                ownership, royalties, or profit rights.
               </p>
-              <div className="mt-8 grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <p className="text-[#9aa4af]">Network</p>
-                  <p className="mt-1 text-lg text-[#f3dc97]">Base</p>
-                </div>
-                <div>
-                  <p className="text-[#9aa4af]">Playable in</p>
-                  <p className="mt-1 text-lg text-[#f3dc97]">Dream Crafter</p>
-                </div>
-              </div>
-              <div className="mt-8">
-                <Button href="/token">Both tokens</Button>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button href="/elite">$ELITE</Button>
+                <Button href="/eltz" variant="teal">
+                  $ELTZ
+                </Button>
               </div>
             </div>
           </div>

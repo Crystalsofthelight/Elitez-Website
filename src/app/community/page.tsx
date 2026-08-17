@@ -30,6 +30,9 @@ export default function CommunityPage() {
             <p className="mt-3 font-mono text-sm break-all">{contract.address}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               <CopyButton value={contract.address} label="Copy contract" />
+              <Button href="/elite" variant="ghost">
+                $ELITE page
+              </Button>
               <Button href={links.uniswap} variant="ghost" external>
                 Uniswap
               </Button>
@@ -43,6 +46,9 @@ export default function CommunityPage() {
             <p className="mt-3 font-mono text-sm break-all">{eltz.address}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               <CopyButton value={eltz.address} label="Copy contract" />
+              <Button href="/eltz" variant="ghost">
+                $ELTZ page
+              </Button>
               <Button href={eltz.uniswap} variant="ghost" external>
                 Buy
               </Button>

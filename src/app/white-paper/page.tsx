@@ -44,7 +44,10 @@ export default function WhitePaperPage() {
 
       <section className="mx-auto max-w-3xl px-5">
         <div className="flex flex-wrap gap-3">
-          <Button href="/token">Tokenomics</Button>
+          <Button href="/elite">$ELITE tokenomics</Button>
+          <Button href="/eltz" variant="ghost">
+            $ELTZ
+          </Button>
           <Button href="/legal" variant="ghost">
             Full legal disclaimer
           </Button>

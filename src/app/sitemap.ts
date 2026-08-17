@@ -5,6 +5,8 @@ const routes = [
   "/dream-crafter",
   "/music",
   "/token",
+  "/elite",
+  "/eltz",
   "/white-paper",
   "/community",
   "/legal",

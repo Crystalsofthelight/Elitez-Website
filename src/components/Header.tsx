@@ -31,7 +31,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-5 xl:gap-7 lg:flex">
           {nav.map((item) => {
             const active = pathname === item.href;
             return (
@@ -49,12 +49,6 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Link
-            href="/token"
-            className="text-sm text-[#c8c1b2] transition hover:text-white"
-          >
-            Tokens
-          </Link>
           <a
             href={links.app}
             target="_blank"

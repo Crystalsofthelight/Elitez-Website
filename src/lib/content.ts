@@ -70,7 +70,8 @@ export const links = {
 export const nav = [
   { href: "/dream-crafter", label: "Dream Crafter" },
   { href: "/music", label: "Music" },
-  { href: "/token", label: "Tokens" },
+  { href: "/elite", label: "$ELITE" },
+  { href: "/eltz", label: "$ELTZ" },
   { href: "/white-paper", label: "White Paper" },
   { href: "/community", label: "Community" },
 ];
@@ -87,10 +88,10 @@ export const pillars = [
   {
     href: "/token",
     kicker: "$ELITE and $ELTZ",
-    title: "Two tokens. One world.",
-    body: "$ELITE is the creator-led token on Base. $ELTZ — Elitez Chip — is a native B20 token used for staking and play inside Dream Crafter.",
+    title: "Two tokens. Two pages.",
+    body: "$ELITE is the creator-led token on Base. $ELTZ — Elitez Chip — is a native B20 token used for play inside Dream Crafter. Each has its own page.",
     image: "/brand/duck.png",
-    cta: "Token details",
+    cta: "Choose a token",
   },
   {
     href: "/dream-crafter",

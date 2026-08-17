@@ -27,9 +27,12 @@ export function Footer() {
           <div className="mt-5 flex flex-col gap-3 text-xs text-[#9aa4af]">
             <div className="flex flex-wrap items-center gap-2">
               <TokenMark src={contract.icon} alt="" size={20} />
-              <span className="rounded-full border border-[rgba(215,179,90,0.2)] px-3 py-1">
+              <Link
+                href="/elite"
+                className="rounded-full border border-[rgba(215,179,90,0.2)] px-3 py-1 hover:text-white"
+              >
                 Base / $ELITE
-              </span>
+              </Link>
               <code className="max-w-full truncate rounded-full bg-black/30 px-3 py-1">
                 {contract.address}
               </code>
@@ -37,9 +40,12 @@ export function Footer() {
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <TokenMark src={eltz.icon} alt="" size={20} />
-              <span className="rounded-full border border-[rgba(26,212,200,0.28)] px-3 py-1">
+              <Link
+                href="/eltz"
+                className="rounded-full border border-[rgba(26,212,200,0.28)] px-3 py-1 hover:text-white"
+              >
                 Base / $ELTZ
-              </span>
+              </Link>
               <code className="max-w-full truncate rounded-full bg-black/30 px-3 py-1">
                 {eltz.address}
               </code>
