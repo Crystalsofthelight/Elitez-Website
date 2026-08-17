@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { contract, links, nav } from "@/lib/content";
+import { contract, eltz, links, nav } from "@/lib/content";
 import { CopyButton } from "./CopyButton";
+import { TokenMark } from "./TokenMark";
 
 export function Footer() {
   return (
@@ -23,14 +24,27 @@ export function Footer() {
             and Dream Crafter — built around participation, not promises of
             return.
           </p>
-          <div className="mt-5 flex flex-wrap items-center gap-2 text-xs text-[#9aa4af]">
-            <span className="rounded-full border border-[rgba(215,179,90,0.2)] px-3 py-1">
-              Base / $ELITE
-            </span>
-            <code className="max-w-full truncate rounded-full bg-black/30 px-3 py-1">
-              {contract.address}
-            </code>
-            <CopyButton value={contract.address} />
+          <div className="mt-5 flex flex-col gap-3 text-xs text-[#9aa4af]">
+            <div className="flex flex-wrap items-center gap-2">
+              <TokenMark src={contract.icon} alt="" size={20} />
+              <span className="rounded-full border border-[rgba(215,179,90,0.2)] px-3 py-1">
+                Base / $ELITE
+              </span>
+              <code className="max-w-full truncate rounded-full bg-black/30 px-3 py-1">
+                {contract.address}
+              </code>
+              <CopyButton value={contract.address} />
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <TokenMark src={eltz.icon} alt="" size={20} />
+              <span className="rounded-full border border-[rgba(26,212,200,0.28)] px-3 py-1">
+                Base / $ELTZ
+              </span>
+              <code className="max-w-full truncate rounded-full bg-black/30 px-3 py-1">
+                {eltz.address}
+              </code>
+              <CopyButton value={eltz.address} />
+            </div>
           </div>
         </div>
 
@@ -80,8 +94,8 @@ export function Footer() {
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-6 text-xs leading-6 text-[#7f8892] md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Elitez. All rights reserved.</p>
           <p>
-            $ELITE is not an investment. Dream Crafter is intended for adults
-            18+ where legally permitted.
+            $ELITE and $ELTZ are not investments. Dream Crafter is intended
+            for adults 18+ where legally permitted.
           </p>
         </div>
       </div>

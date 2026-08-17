@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { CopyButton } from "@/components/CopyButton";
 import { PageHero } from "@/components/PageHero";
-import { contract, links, socials } from "@/lib/content";
+import { TokenMark } from "@/components/TokenMark";
+import { contract, eltz, links, socials } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Community",
@@ -16,21 +17,39 @@ export default function CommunityPage() {
       <PageHero
         kicker="Stay connected"
         title="The team is on the open web."
-        lede="The Elite token backs multiple projects — tangible NFT work, music on every major streaming platform, social channels, and Dream Crafter on Base."
+        lede="The Elite token and Elitez Chip back multiple projects — tangible NFT work, music on every major streaming platform, social channels, and Dream Crafter on Base."
       />
 
       <section className="mx-auto max-w-6xl px-5">
-        <div className="panel rounded-[2rem] p-6 md:p-8">
-          <p className="kicker">Base / $ELITE</p>
-          <p className="mt-3 font-mono text-sm break-all">{contract.address}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <CopyButton value={contract.address} label="Copy contract" />
-            <Button href={links.app} external>
-              Open Dream Crafter
-            </Button>
-            <Button href={links.uniswap} variant="ghost" external>
-              Uniswap
-            </Button>
+        <div className="grid gap-4 lg:grid-cols-2">
+          <div className="panel rounded-[2rem] p-6 md:p-8">
+            <div className="flex items-center gap-3">
+              <TokenMark src={contract.icon} alt="$ELITE" size={40} />
+              <p className="kicker">Base / $ELITE</p>
+            </div>
+            <p className="mt-3 font-mono text-sm break-all">{contract.address}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <CopyButton value={contract.address} label="Copy contract" />
+              <Button href={links.uniswap} variant="ghost" external>
+                Uniswap
+              </Button>
+            </div>
+          </div>
+          <div className="panel rounded-[2rem] p-6 md:p-8">
+            <div className="flex items-center gap-3">
+              <TokenMark src={eltz.icon} alt="$ELTZ" size={40} />
+              <p className="kicker">Base / $ELTZ</p>
+            </div>
+            <p className="mt-3 font-mono text-sm break-all">{eltz.address}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <CopyButton value={eltz.address} label="Copy contract" />
+              <Button href={eltz.staking} variant="ghost" external>
+                Stake
+              </Button>
+              <Button href={eltz.basescan} variant="ghost" external>
+                BaseScan
+              </Button>
+            </div>
           </div>
         </div>
 

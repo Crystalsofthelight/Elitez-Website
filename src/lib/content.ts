@@ -3,7 +3,7 @@ export const site = {
   url: "https://elitez.xyz",
   tagline: "A creator-driven world of music, culture, and play.",
   description:
-    "Elitez is a creator-led ecosystem on Base: original music across major platforms, the $ELITE token, and Dream Crafter — a wallet-connected arcade and creator app.",
+    "Elitez is a creator-led ecosystem on Base: original music across major platforms, the $ELITE token, Elitez Chip ($ELTZ), and Dream Crafter — a wallet-connected arcade and creator app.",
 };
 
 export const contract = {
@@ -14,6 +14,25 @@ export const contract = {
   pair: "0x6ba94ddbc082d0f73d9c5484ab7b9fa695bec479",
   decimals: 18,
   holders: "2,848+",
+  icon: "/brand/duck.png",
+};
+
+export const eltz = {
+  chain: "Base",
+  symbol: "ELTZ",
+  name: "Elitez Chip",
+  standard: "B20",
+  address: "0xB200000000000000000000B34597aFF8EA532A60",
+  decimals: 18,
+  holders: "45",
+  supply: "1,000,000",
+  icon: "/brand/eltz-token-icon.gif",
+  dexscreener:
+    "https://dexscreener.com/base/0x1d16828013717afd3867415642bd8b4ad9ebe0d1f0e08276ccb23f7b0c1280c2",
+  basescan:
+    "https://basescan.org/token/0xB200000000000000000000B34597aFF8EA532A60",
+  staking: "https://elitez.app/staking",
+  launchpad: "https://elitez.app/b20",
 };
 
 export const links = {
@@ -50,7 +69,7 @@ export const links = {
 export const nav = [
   { href: "/dream-crafter", label: "Dream Crafter" },
   { href: "/music", label: "Music" },
-  { href: "/token", label: "Token" },
+  { href: "/token", label: "Tokens" },
   { href: "/white-paper", label: "White Paper" },
   { href: "/community", label: "Community" },
 ];
@@ -66,9 +85,9 @@ export const pillars = [
   },
   {
     href: "/token",
-    kicker: "$ELITE on Base",
-    title: "A token for the culture.",
-    body: "Elite is a creator-led token on Base. It is not an investment vehicle. It exists so the community can participate in music, merch, collectibles, and play.",
+    kicker: "$ELITE and $ELTZ",
+    title: "Two tokens. One world.",
+    body: "$ELITE is the creator-led token on Base. $ELTZ — Elitez Chip — is a native B20 token used for staking and play inside Dream Crafter.",
     image: "/brand/duck.png",
     cta: "Token details",
   },
@@ -76,7 +95,7 @@ export const pillars = [
     href: "/dream-crafter",
     kicker: "Dream Crafter",
     title: "The playable Elitez world.",
-    body: "A wallet-connected Base app for live games, custom reels, collectible minting, staking, and onchain rewards — with $ELITE as a playable token.",
+    body: "A wallet-connected Base app for live games, custom reels, collectible minting, staking, and onchain rewards — with $ELITE and $ELTZ as playable tokens.",
     image: "/brand/play-icon.png",
     cta: "Explore the app",
   },
@@ -382,6 +401,29 @@ export const markets = [
   {
     label: "CoinGecko",
     href: links.coingeckoSearch,
-    body: "Search the official contract for listing alerts and market pages.",
+    body: "Search the official $ELITE contract for listing alerts and market pages.",
+  },
+];
+
+export const eltzMarkets = [
+  {
+    label: "BaseScan",
+    href: eltz.basescan,
+    body: "Official Elitez Chip (ELTZ) contract, holders, and transfers on Base.",
+  },
+  {
+    label: "DEX Screener",
+    href: eltz.dexscreener,
+    body: "ELTZ / ETH pair on Base.",
+  },
+  {
+    label: "ELTZ Staking",
+    href: eltz.staking,
+    body: "Stake Elitez Chip inside Dream Crafter.",
+  },
+  {
+    label: "B20 Launchpad",
+    href: eltz.launchpad,
+    body: "Dream Crafter’s launch surface for B20 tokens, including $ELTZ.",
   },
 ];

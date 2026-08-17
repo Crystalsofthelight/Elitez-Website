@@ -25,7 +25,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL("https://elitez.xyz"),
   title: {
-    default: "Elitez — Music, $ELITE, and Dream Crafter",
+    default: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
     template: "%s · Elitez",
   },
   description: site.description,
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     apple: "/brand/duck.png",
   },
   openGraph: {
-    title: "Elitez — Music, $ELITE, and Dream Crafter",
+    title: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
     description: site.description,
     url: "https://elitez.xyz",
     siteName: "Elitez",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elitez — Music, $ELITE, and Dream Crafter",
+    title: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
     description: site.description,
     images: ["/brand/hero.jpg"],
   },

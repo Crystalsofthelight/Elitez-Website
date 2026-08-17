@@ -24,10 +24,11 @@ export default function LegalPage() {
             No investment offering
           </h2>
           <p className="mt-4">
-            Elite Token (“Elite”) is a digital token created for participation
-            within the Elite ecosystem. Elite is not an investment, security,
-            share, derivative, or financial instrument of any kind. Ownership or
-            holding of Elite Token does not grant holders any right to profits,
+            Elite Token (“Elite”) and Elitez Chip (“ELTZ”) are digital tokens
+            created for participation within the Elite ecosystem. They are not
+            investments, securities, shares, derivatives, or financial
+            instruments of any kind. Ownership or holding of $ELITE or $ELTZ
+            does not grant holders any right to profits,
             dividends, revenue, royalties, or distributions of any kind.
           </p>
         </div>

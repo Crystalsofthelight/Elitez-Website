@@ -53,7 +53,7 @@ export function Header() {
             href="/token"
             className="text-sm text-[#c8c1b2] transition hover:text-white"
           >
-            Buy $ELITE
+            Tokens
           </Link>
           <a
             href={links.app}
@@ -91,12 +91,6 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/token"
-                className="rounded-xl px-3 py-3 text-base text-[#f3ead8]"
-              >
-                Buy $ELITE
-              </Link>
               <a
                 href={links.app}
                 target="_blank"

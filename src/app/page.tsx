@@ -25,9 +25,9 @@ export default function Home() {
             <span className="gold-text"> on Base.</span>
           </h1>
           <p className="rise-3 mt-6 max-w-2xl text-base leading-8 text-[#d7d1c4] sm:text-lg md:text-xl">
-            Elitez brings original music, the $ELITE token, and Dream Crafter
-            into one ecosystem — built from real creative work, not speculation
-            as a product.
+            Elitez brings original music, $ELITE, Elitez Chip ($ELTZ), and
+            Dream Crafter into one ecosystem — built from real creative work,
+            not speculation as a product.
           </p>
           <div className="rise-3 mt-8 flex flex-wrap gap-3">
             <Button href={links.app} external>
@@ -37,7 +37,7 @@ export default function Home() {
               Listen to Elitez
             </Button>
             <Button href="/token" variant="ghost">
-              $ELITE on Base
+              $ELITE and $ELTZ
             </Button>
           </div>
           <p className="mt-8 max-w-xl font-serif text-xl text-[#c8b88a] italic">
@@ -192,15 +192,16 @@ export default function Home() {
               />
             </div>
             <div className="p-8 md:p-12">
-              <p className="kicker">$ELITE</p>
+              <p className="kicker">$ELITE · $ELTZ</p>
               <h2 className="font-display mt-4 text-3xl md:text-4xl">
                 Built to back the work.
               </h2>
               <p className="mt-5 leading-8 text-[#b7bfc8]">
-                Starting supply of 1 trillion, with planned burns that take
-                total supply to 250 billion after year two. Holding $ELITE does
-                not grant ownership, royalties, or profit rights. Participation
-                is voluntary.
+                $ELITE is the creator token, with planned burns from a 1
+                trillion start. $ELTZ — Elitez Chip — is a native B20 token
+                with a 1,000,000 supply, used for staking and play. Holding
+                either token does not grant ownership, royalties, or profit
+                rights.
               </p>
               <div className="mt-8 grid grid-cols-2 gap-4 text-sm">
                 <div>
@@ -213,7 +214,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-8">
-                <Button href="/token">Tokenomics and markets</Button>
+                <Button href="/token">Both tokens</Button>
               </div>
             </div>
           </div>
