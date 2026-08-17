@@ -81,7 +81,7 @@ export const pillars = [
     href: "/music",
     kicker: "Elitez Music",
     title: "Original records, worldwide.",
-    body: "Hip hop, R&B, soul, swamp rock, and indie — written to connect. The catalog lives on Spotify, Apple Music, Amazon Music, YouTube, and inside social content libraries.",
+    body: "Hip hop, R&B, soul, and indie — written to connect. The catalog lives on Spotify, Apple Music, Amazon Music, YouTube, and inside social content libraries.",
     image: "/brand/artist.jpg",
     cta: "Listen",
   },

@@ -7,7 +7,7 @@ import { albums, links, platforms, tracks } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Elitez Music",
   description:
-    "Elitez brings together hip hop, R&B, soul, swamp rock, and indie. Stream the catalog worldwide and hear it inside Dream Crafter.",
+    "Elitez brings together hip hop, R&B, soul, and indie. Stream the catalog worldwide and hear it inside Dream Crafter.",
 };
 
 export default function MusicPage() {
@@ -16,7 +16,7 @@ export default function MusicPage() {
       <PageHero
         kicker="Elitez Music"
         title="Raw. Emotional. Built to connect."
-        lede="Hip hop, R&B, soul, swamp rock, and indie — blended into a sound that is hard-hitting and human. Elitez is more than a catalog. A portion of royalties may be contributed back into the Base / $ELITE ecosystem each month."
+        lede="Hip hop, R&B, soul, and indie — blended into a sound that is hard-hitting and human. Elitez is more than a catalog. A portion of royalties may be contributed back into the Base / $ELITE ecosystem each month."
       />
 
       <section className="mx-auto max-w-6xl px-5">
