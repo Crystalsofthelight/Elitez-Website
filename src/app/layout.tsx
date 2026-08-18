@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope, Syne } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { headers } from "next/headers";
 import { cookieToInitialState } from "wagmi";
 import { Footer } from "@/components/Footer";
@@ -81,6 +82,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
           <Footer />
+          <Analytics />
         </Web3Provider>
       </body>
     </html>
