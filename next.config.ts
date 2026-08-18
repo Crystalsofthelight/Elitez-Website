@@ -8,18 +8,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/whitepaper",
-        destination: "/white-paper",
-        permanent: true,
-      },
-      {
-        source: "/Whitepaper",
-        destination: "/white-paper",
-        permanent: true,
-      },
-      {
         source: "/white_paper",
-        destination: "/white-paper",
+        destination: "/whitepaper",
+        permanent: true,
+      },
+      {
+        source: "/elite-whitepaper",
+        destination: "/whitepaper",
         permanent: true,
       },
     ];

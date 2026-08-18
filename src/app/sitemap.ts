@@ -8,7 +8,7 @@ const routes = [
   "/elite",
   "/eltz",
   "/swap",
-  "/white-paper",
+  "/whitepaper",
   "/community",
   "/faq",
   "/legal",

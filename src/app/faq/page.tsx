@@ -44,7 +44,7 @@ const faqs = [
   },
   {
     q: "Where is the white paper?",
-    a: "The official Elitez white paper lives at /white-paper. Older /whitepaper links now redirect there.",
+    a: "The official Elitez white paper lives at /whitepaper.",
   },
 ];
 

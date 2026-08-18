@@ -77,7 +77,7 @@ export const nav = [
   { href: "/elite", label: "$ELITE" },
   { href: "/eltz", label: "$ELTZ" },
   { href: "/swap", label: "Swap" },
-  { href: "/white-paper", label: "White Paper" },
+  { href: "/whitepaper", label: "White Paper" },
   { href: "/community", label: "Community" },
 ];
 

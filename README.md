@@ -31,7 +31,7 @@ npm start
 | `/elite` | $ELITE contract, tokenomics, markets |
 | `/eltz` | $ELTZ contract, supply, markets |
 | `/swap` | Connect wallet and swap $ELITE / $ELTZ |
-| `/white-paper` | White paper |
+| `/whitepaper` | White paper |
 | `/community` | Socials and support |
 | `/faq` | Common questions |
 | `/legal` | Disclaimers |
