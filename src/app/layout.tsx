@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope, Syne } from "next/font/google";
+import { headers } from "next/headers";
+import { cookieToInitialState } from "wagmi";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { Web3Provider } from "@/components/Web3Provider";
 import { site } from "@/lib/content";
+import { wagmiConfig } from "@/lib/web3";
 import "./globals.css";
 
 const syne = Syne({
@@ -49,19 +53,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const initialState = cookieToInitialState(
+    wagmiConfig,
+    (await headers()).get("cookie"),
+  );
+
   return (
     <html
       lang="en"
       className={`${syne.variable} ${manrope.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden">
-        <div className="grain" aria-hidden />
-        <Header />
-        <main id="content" className="relative z-10 w-full min-w-0 flex-1">
-          {children}
-        </main>
-        <Footer />
+        <Web3Provider initialState={initialState}>
+          <div className="grain" aria-hidden />
+          <Header />
+          <main id="content" className="relative z-10 w-full min-w-0 flex-1">
+            {children}
+          </main>
+          <Footer />
+        </Web3Provider>
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ const routes = [
   "/token",
   "/elite",
   "/eltz",
+  "/swap",
   "/white-paper",
   "/community",
   "/legal",

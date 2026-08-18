@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ConnectWallet } from "@/components/ConnectWallet";
 import { links, nav } from "@/lib/content";
 
 export function Header() {
@@ -16,7 +17,7 @@ export function Header() {
       >
         Skip to content
       </a>
-      <div className="mx-auto flex max-w-6xl min-w-0 items-center justify-between gap-4 px-5 py-3.5">
+      <div className="mx-auto flex max-w-6xl min-w-0 items-center justify-between gap-3 px-5 py-3.5">
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/brand/duck.png"
@@ -31,7 +32,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 xl:gap-7 lg:flex">
+        <nav className="hidden items-center gap-4 whitespace-nowrap xl:gap-6 lg:flex">
           {nav.map((item) => {
             const active = pathname === item.href;
             return (
@@ -55,17 +56,12 @@ export function Header() {
           </a>
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href={links.app}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-[linear-gradient(180deg,#f3dc97,#c9a047)] px-4 py-2 text-sm font-semibold text-[#1a1408]"
-          >
-            Open Dream Crafter
-          </a>
+        <div className="hidden items-center lg:flex">
+          <ConnectWallet />
         </div>
 
+        <div className="flex items-center gap-2 lg:hidden">
+          <ConnectWallet compact />
         <details key={pathname} className="lg:hidden">
           <summary
             aria-label="Open menu"
@@ -110,6 +106,7 @@ export function Header() {
             </div>
           </nav>
         </details>
+        </div>
       </div>
     </header>
   );
