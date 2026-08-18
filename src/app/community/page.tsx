@@ -94,8 +94,8 @@ export default function CommunityPage() {
           <h2 className="font-display text-3xl">Support</h2>
           <p className="mt-4 max-w-2xl leading-8 text-[#b7bfc8]">
             Dream Crafter includes an in-app support guide for wallets,
-            deposits, play flow, and custom reels. For email support related to
-            the Google Play listing, use the developer address below.
+            deposits, play flow, and custom reels. For email support, write to
+            elite@elitez.xyz. The Google Play developer address is also below.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Button href={links.facebookChat} external>
@@ -105,6 +105,9 @@ export default function CommunityPage() {
               In-app support
             </Button>
             <Button href={links.supportEmail} variant="ghost" external>
+              elite@elitez.xyz
+            </Button>
+            <Button href={links.supportEmailAlt} variant="ghost" external>
               CrystalsoftheLight333@gmail.com
             </Button>
           </div>

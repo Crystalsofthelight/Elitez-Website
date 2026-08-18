@@ -98,6 +98,7 @@ export function Footer() {
             <a href={links.telegram} target="_blank" rel="noopener noreferrer">
               Telegram
             </a>
+            <a href={links.supportEmail}>elite@elitez.xyz</a>
             <a href={links.privacy} target="_blank" rel="noopener noreferrer">
               App privacy policy
             </a>

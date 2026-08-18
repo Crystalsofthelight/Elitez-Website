@@ -67,7 +67,8 @@ export const links = {
   xFounder: "https://x.com/DerekOMalley3",
   xNft: "https://x.com/NFT_Rares",
   telegram: "https://t.me/elitezofficial",
-  supportEmail: "mailto:CrystalsoftheLight333@gmail.com",
+  supportEmail: "mailto:elite@elitez.xyz",
+  supportEmailAlt: "mailto:CrystalsoftheLight333@gmail.com",
 };
 
 export const nav = [
