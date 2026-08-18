@@ -130,7 +130,7 @@ export default function Home() {
                 alt={feature.title}
                 width={640}
                 height={220}
-                className="h-20 w-full object-cover"
+                className="h-auto w-full bg-black object-contain"
               />
               <div className="p-4">
                 <h3 className="font-display text-lg">{feature.title}</h3>

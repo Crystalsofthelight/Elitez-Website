@@ -83,14 +83,14 @@ export default function DreamCrafterPage() {
               href={feature.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="panel lift grid w-full min-w-0 overflow-hidden rounded-3xl md:grid-cols-[220px_1fr]"
+              className="panel lift grid w-full min-w-0 overflow-hidden rounded-3xl"
             >
               <Image
                 src={feature.image}
                 alt=""
                 width={640}
                 height={220}
-                className="h-full min-h-32 w-full object-cover"
+                className="h-auto w-full bg-black object-contain"
               />
               <div className="p-5">
                 <h3 className="font-display text-2xl">{feature.title}</h3>
