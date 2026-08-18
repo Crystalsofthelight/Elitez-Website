@@ -42,15 +42,24 @@ export const metadata: Metadata = {
     description: site.description,
     url: "https://elitez.xyz",
     siteName: "Elitez",
+    locale: "en_US",
     type: "website",
-    images: [{ url: "/brand/hero.jpg", width: 1376, height: 768 }],
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
     description: site.description,
-    images: ["/brand/hero.jpg"],
+    images: ["/og.png"],
   },
+
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
