@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   useAccount,
   useBalance,
@@ -18,7 +18,6 @@ import {
   parseUnits,
   type Address,
 } from "viem";
-import { ConnectWallet } from "@/components/ConnectWallet";
 import { TokenMark } from "@/components/TokenMark";
 import { type SwapTokenId, swapTokens } from "@/lib/web3";
 
@@ -36,45 +35,101 @@ type Quote = {
 };
 
 const tokenIds = Object.keys(swapTokens) as SwapTokenId[];
+const percents = [25, 50, 100] as const;
 
-function TokenSelect({
+function formatTokenAmount(value: bigint, decimals: number) {
+  const asNumber = Number(formatUnits(value, decimals));
+  if (!Number.isFinite(asNumber)) return formatUnits(value, decimals);
+  return asNumber.toLocaleString(undefined, {
+    maximumFractionDigits: asNumber >= 1000 ? 2 : 6,
+  });
+}
+
+function formatUsd(value?: string | number) {
+  const amount = typeof value === "string" ? Number(value) : value;
+  if (amount === undefined || !Number.isFinite(amount) || amount <= 0) {
+    return "$0.00";
+  }
+  return amount.toLocaleString(undefined, {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: amount < 1 ? 4 : 2,
+  });
+}
+
+function trimAmount(value: string) {
+  if (!value.includes(".")) return value;
+  return value.replace(/(\.\d*?[1-9])0+$/u, "$1").replace(/\.0+$/u, "");
+}
+
+function TokenIcon({ id, size = 28 }: { id: SwapTokenId; size?: number }) {
+  const token = swapTokens[id];
+  if (token.isNative) {
+    return (
+      <span
+        className="inline-flex items-center justify-center rounded-full bg-[#627eea] font-bold text-white"
+        style={{ width: size, height: size, fontSize: size * 0.42 }}
+      >
+        Ξ
+      </span>
+    );
+  }
+  return <TokenMark src={token.icon} alt="" size={size} />;
+}
+
+function TokenPicker({
   value,
-  exclude,
   onChange,
 }: {
   value: SwapTokenId;
-  exclude: SwapTokenId;
   onChange: (id: SwapTokenId) => void;
 }) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const token = swapTokens[value];
+
+  useEffect(() => {
+    function onPointer(event: MouseEvent) {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", onPointer);
+    return () => document.removeEventListener("mousedown", onPointer);
+  }, []);
+
   return (
-    <div className="flex gap-2">
-      {tokenIds
-        .filter((id) => id !== exclude)
-        .map((id) => {
-          const token = swapTokens[id];
-          const active = value === id;
-          return (
+    <div ref={rootRef} className="relative shrink-0">
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        className="flex items-center gap-2 rounded-full bg-[#1b2330] py-1.5 pr-2.5 pl-1.5 text-sm font-semibold text-white"
+      >
+        <TokenIcon id={value} size={26} />
+        {token.symbol}
+        <span className="text-[10px] text-[#9aa4af]">▾</span>
+      </button>
+      {open ? (
+        <div className="absolute top-[calc(100%+8px)] right-0 z-20 w-52 overflow-hidden rounded-2xl border border-[rgba(215,179,90,0.16)] bg-[#101720] py-1 shadow-xl">
+          {tokenIds.map((id) => (
             <button
               key={id}
               type="button"
-              onClick={() => onChange(id)}
-              className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm ${
-                active
-                  ? "border-[#1ad4c8] bg-white/5 text-[#f3ead8]"
-                  : "border-[rgba(243,234,216,0.12)] text-[#9aa4af]"
-              }`}
+              onClick={() => {
+                onChange(id);
+                setOpen(false);
+              }}
+              className="flex w-full items-center gap-3 px-3 py-2.5 text-left text-sm text-[#f3ead8] hover:bg-white/5"
             >
-              {token.isNative ? (
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#627eea] text-[10px] font-bold text-white">
-                  Ξ
+              <TokenIcon id={id} />
+              <span>
+                <span className="block font-semibold">{swapTokens[id].symbol}</span>
+                <span className="block text-xs text-[#9aa4af]">
+                  {swapTokens[id].name}
                 </span>
-              ) : (
-                <TokenMark src={token.icon} alt="" size={20} />
-              )}
-              {token.symbol}
+              </span>
             </button>
-          );
-        })}
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -85,6 +140,7 @@ export function SwapForm() {
   const [fromId, setFromId] = useState<SwapTokenId>("ETH");
   const [toId, setToId] = useState<SwapTokenId>("ELITE");
   const [amount, setAmount] = useState("");
+  const [activePercent, setActivePercent] = useState<number | null>(null);
   const [quote, setQuote] = useState<Quote | null>(null);
   const [quoteError, setQuoteError] = useState("");
   const [quoting, setQuoting] = useState(false);
@@ -95,15 +151,28 @@ export function SwapForm() {
 
   const ethBalance = useBalance({
     address,
-    query: { enabled: Boolean(address) && from.isNative },
+    query: { enabled: Boolean(address) },
   });
-  const tokenBalance = useReadContract({
-    address: from.address,
+  const eliteBalance = useReadContract({
+    address: swapTokens.ELITE.address,
     abi: erc20Abi,
     functionName: "balanceOf",
     args: address ? [address] : undefined,
-    query: { enabled: Boolean(address) && !from.isNative && onBase },
+    query: { enabled: Boolean(address) && onBase },
   });
+  const eltzBalance = useReadContract({
+    address: swapTokens.ELTZ.address,
+    abi: erc20Abi,
+    functionName: "balanceOf",
+    args: address ? [address] : undefined,
+    query: { enabled: Boolean(address) && onBase },
+  });
+
+  const balances: Record<SwapTokenId, bigint | undefined> = {
+    ETH: ethBalance.data?.value,
+    ELITE: eliteBalance.data as bigint | undefined,
+    ELTZ: eltzBalance.data as bigint | undefined,
+  };
 
   const router = (quote?.routerAddress ||
     quote?.routeSummary.routerAddress) as Address | undefined;
@@ -124,9 +193,8 @@ export function SwapForm() {
     }
   }, [amount, from.decimals]);
 
-  const balance = from.isNative
-    ? ethBalance.data?.value
-    : (tokenBalance.data as bigint | undefined);
+  const sellBalance = balances[fromId];
+  const buyBalance = balances[toId];
 
   useEffect(() => {
     if (!parsedAmount) {
@@ -178,17 +246,15 @@ export function SwapForm() {
   const swapWait = useWaitForTransactionReceipt({ hash: swapHash });
 
   useEffect(() => {
-    if (approveWait.isSuccess) {
-      void allowance.refetch();
-    }
-    // refetch identity is stable enough for this success edge
+    if (approveWait.isSuccess) void allowance.refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [approveWait.isSuccess]);
 
   useEffect(() => {
     if (swapWait.isSuccess) {
       void ethBalance.refetch();
-      void tokenBalance.refetch();
+      void eliteBalance.refetch();
+      void eltzBalance.refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [swapWait.isSuccess]);
@@ -199,11 +265,40 @@ export function SwapForm() {
     typeof allowance.data === "bigint" &&
     allowance.data < parsedAmount;
 
+  function chooseFrom(id: SwapTokenId) {
+    if (id === toId) setToId(fromId);
+    setFromId(id);
+    setActivePercent(null);
+    setQuote(null);
+  }
+
+  function chooseTo(id: SwapTokenId) {
+    if (id === fromId) setFromId(toId);
+    setToId(id);
+    setQuote(null);
+  }
+
   function flip() {
     setFromId(toId);
     setToId(fromId);
     setAmount("");
+    setActivePercent(null);
     setQuote(null);
+  }
+
+  function setPercent(percent: number) {
+    if (sellBalance === undefined) return;
+    let value =
+      percent === 100
+        ? sellBalance
+        : (sellBalance * BigInt(percent)) / BigInt(100);
+    if (from.isNative && percent === 100) {
+      const gasReserve = parseUnits("0.0002", 18);
+      value =
+        sellBalance > gasReserve ? sellBalance - gasReserve : BigInt(0);
+    }
+    setActivePercent(percent);
+    setAmount(trimAmount(formatUnits(value, from.decimals)));
   }
 
   async function onSwap() {
@@ -252,101 +347,127 @@ export function SwapForm() {
   }
 
   const outDisplay = quote
-    ? Number(formatUnits(BigInt(quote.routeSummary.amountOut), to.decimals)).toLocaleString(
-        undefined,
-        { maximumFractionDigits: 6 },
-      )
-    : "—";
+    ? formatTokenAmount(BigInt(quote.routeSummary.amountOut), to.decimals)
+    : quoting
+      ? "…"
+      : "0";
+
+  const rate =
+    quote && parsedAmount && parsedAmount > BigInt(0)
+      ? Number(
+          formatUnits(BigInt(quote.routeSummary.amountOut), to.decimals),
+        ) / Number(formatUnits(parsedAmount, from.decimals))
+      : null;
 
   const status = approveWait.isLoading
-    ? "Waiting for approval…"
+    ? "Confirm approval in your wallet…"
     : swapWait.isLoading
-      ? "Waiting for swap…"
+      ? "Confirm the swap in your wallet…"
       : swapWait.isSuccess
-        ? "Swap confirmed."
+        ? "Swap complete."
         : approveWait.isSuccess
-          ? "Approved. Swap again to complete."
+          ? "Approved. Press Swap again."
           : "";
 
   const actionLabel = !isConnected
-    ? "Connect to swap"
+    ? "Connect wallet to swap"
     : !onBase
       ? "Switch to Base"
       : needsApprove
         ? isApproving
           ? "Approve in wallet…"
-          : "Approve token"
+          : `Approve ${from.symbol}`
         : isSwapping
           ? "Confirm in wallet…"
-          : `Swap ${from.symbol} for ${to.symbol}`;
+          : `Swap ${from.symbol} to ${to.symbol}`;
 
   return (
-    <div className="panel mx-auto max-w-xl rounded-[2rem] p-6 md:p-8">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <p className="kicker">In-app swap</p>
-          <h2 className="font-display mt-2 text-3xl">Trade on Base.</h2>
-        </div>
-        <ConnectWallet compact />
-      </div>
+    <div className="mx-auto w-full max-w-md">
+      <h1 className="font-display mb-4 text-2xl">Swap</h1>
 
-      <div className="mt-6 rounded-3xl border border-[rgba(215,179,90,0.14)] bg-black/20 p-4">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-xs tracking-wide text-[#9aa4af] uppercase">From</p>
-          {balance !== undefined ? (
-            <button
-              type="button"
-              className="text-xs text-[#1ad4c8]"
-              onClick={() => setAmount(formatUnits(balance, from.decimals))}
-            >
-              Balance {Number(formatUnits(balance, from.decimals)).toLocaleString(undefined, { maximumFractionDigits: 4 })}
-            </button>
-          ) : null}
-        </div>
-        <TokenSelect
-          value={fromId}
-          exclude={toId}
-          onChange={(id) => {
-            setFromId(id);
-            setQuote(null);
-          }}
-        />
-        <input
-          value={amount}
-          onChange={(event) => setAmount(event.target.value)}
-          inputMode="decimal"
-          placeholder="0.0"
-          className="mt-3 w-full bg-transparent text-3xl text-[#f3ead8] outline-none placeholder:text-[#4b5560]"
-        />
-      </div>
+      <div className="relative">
+        <section className="rounded-[1.6rem] bg-[#121821] p-4">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-sm text-[#9aa4af]">Sell</p>
+            <div className="flex gap-1.5">
+              {percents.map((percent) => (
+                <button
+                  key={percent}
+                  type="button"
+                  disabled={sellBalance === undefined}
+                  onClick={() => setPercent(percent)}
+                  className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
+                    activePercent === percent
+                      ? "bg-[#1ad4c8] text-[#05211f]"
+                      : "bg-[#2a3340] text-[#d5dbe3] hover:bg-[#343e4d]"
+                  } disabled:opacity-50`}
+                >
+                  {percent === 100 ? "Max" : `${percent}%`}
+                </button>
+              ))}
+            </div>
+          </div>
 
-      <div className="flex justify-center py-3">
+          <div className="mt-3 flex items-center gap-3">
+            <input
+              value={amount}
+              onChange={(event) => {
+                setActivePercent(null);
+                setAmount(event.target.value.replace(/[^\d.]/g, ""));
+              }}
+              inputMode="decimal"
+              placeholder="0"
+              className="min-w-0 flex-1 bg-transparent text-4xl font-semibold tracking-tight text-white outline-none placeholder:text-[#3d4652]"
+            />
+            <TokenPicker value={fromId} onChange={chooseFrom} />
+          </div>
+
+          <div className="mt-2 flex items-center justify-between text-sm text-[#8b949e]">
+            <span>{formatUsd(quote?.routeSummary.amountInUsd)}</span>
+            <span>
+              {sellBalance !== undefined
+                ? `${formatTokenAmount(sellBalance, from.decimals)} ${from.symbol}`
+                : isConnected
+                  ? "Balance —"
+                  : "Connect to see balance"}
+            </span>
+          </div>
+        </section>
+
         <button
           type="button"
           onClick={flip}
-          className="rounded-full border border-[rgba(243,234,216,0.16)] px-3 py-1 text-sm text-[#f3ead8]"
+          aria-label="Switch tokens"
+          className="absolute top-1/2 left-1/2 z-10 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border-4 border-[#06080b] bg-[#1b2330] text-lg text-white"
         >
-          ↕
+          ↓
         </button>
+
+        <section className="mt-1 rounded-[1.6rem] bg-[#121821] p-4">
+          <p className="text-sm text-[#9aa4af]">Buy</p>
+          <div className="mt-3 flex items-center gap-3">
+            <p className="min-w-0 flex-1 text-4xl font-semibold tracking-tight text-white">
+              {outDisplay}
+            </p>
+            <TokenPicker value={toId} onChange={chooseTo} />
+          </div>
+          <div className="mt-2 flex items-center justify-between text-sm text-[#8b949e]">
+            <span>{formatUsd(quote?.routeSummary.amountOutUsd)}</span>
+            <span>
+              {buyBalance !== undefined
+                ? `${formatTokenAmount(buyBalance, to.decimals)} ${to.symbol}`
+                : ""}
+            </span>
+          </div>
+        </section>
       </div>
 
-      <div className="rounded-3xl border border-[rgba(215,179,90,0.14)] bg-black/20 p-4">
-        <p className="text-xs tracking-wide text-[#9aa4af] uppercase">To</p>
-        <TokenSelect
-          value={toId}
-          exclude={fromId}
-          onChange={(id) => {
-            setToId(id);
-            setQuote(null);
-          }}
-        />
-        <p className="mt-3 text-3xl text-[#f3ead8]">{quoting ? "…" : outDisplay}</p>
-        {quote?.routeSummary.amountOutUsd ? (
-          <p className="mt-1 text-xs text-[#9aa4af]">
-            ≈ ${Number(quote.routeSummary.amountOutUsd).toFixed(2)}
-          </p>
-        ) : null}
-      </div>
+      {rate ? (
+        <p className="mt-3 px-1 text-sm text-[#9aa4af]">
+          1 {from.symbol} ≈ {rate.toLocaleString(undefined, { maximumFractionDigits: 4 })}{" "}
+          {to.symbol}
+        </p>
+      ) : null}
 
       <button
         type="button"
@@ -361,14 +482,13 @@ export function SwapForm() {
           swapWait.isLoading
         }
         onClick={onSwap}
-        className="mt-6 w-full rounded-full bg-[linear-gradient(180deg,#f3dc97,#c9a047)] px-5 py-3 text-sm font-semibold text-[#1a1408] disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-4 w-full rounded-2xl bg-[#0052ff] px-5 py-4 text-base font-semibold text-white disabled:cursor-not-allowed disabled:bg-[#1b2330] disabled:text-[#6b7280]"
       >
         {actionLabel}
       </button>
 
-      <p className="mt-3 text-xs leading-5 text-[#9aa4af]">
-        1% slippage. Quotes route through on-chain liquidity on Base. This is
-        not financial advice.
+      <p className="mt-3 px-1 text-xs leading-5 text-[#6b7280]">
+        1% slippage · Base network · Not financial advice
       </p>
       {quoteError ? (
         <p className="mt-2 text-sm text-[#e8b07a]">{quoteError}</p>

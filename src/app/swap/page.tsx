@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/PageHero";
 import { SwapForm } from "@/components/SwapForm";
 
 export const metadata: Metadata = {
@@ -10,15 +9,8 @@ export const metadata: Metadata = {
 
 export default function SwapPage() {
   return (
-    <>
-      <PageHero
-        kicker="Base swap"
-        title="Swap $ELITE or $ELTZ in the app."
-        lede="Connect a wallet in the top right, then trade ETH, $ELITE, and $ELTZ on Base. Quotes use live on-chain liquidity."
-      />
-      <section className="mx-auto max-w-6xl px-5 pb-16">
-        <SwapForm />
-      </section>
-    </>
+    <section className="mx-auto max-w-6xl px-5 pt-10 pb-20">
+      <SwapForm />
+    </section>
   );
 }
