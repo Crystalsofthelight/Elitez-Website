@@ -77,7 +77,7 @@ export default function DreamCrafterPage() {
             <p className="kicker">Paymaster</p>
             <h2 className="font-display mt-3 text-3xl">Gas is sponsored.</h2>
             <p className="mt-4 text-sm leading-7 text-[#b7bfc8]">
-              Onchain actions in Dream Crafter are covered by a Paymaster.
+              Onchain actions in Dream Crafter are covered by Paymaster.
               CrystalsoftheLight sponsors gas so you can play, mint, and move
               value on Base without holding ETH just to pay network fees.
             </p>
