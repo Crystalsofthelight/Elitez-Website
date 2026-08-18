@@ -35,8 +35,11 @@ export const metadata: Metadata = {
   },
   description: site.description,
   icons: {
-    icon: "/brand/duck.png",
-    apple: "/brand/duck.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   openGraph: {
     title: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
