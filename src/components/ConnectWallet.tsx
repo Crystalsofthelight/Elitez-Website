@@ -6,12 +6,19 @@ import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
 import { base } from "wagmi/chains";
 import { shortAddress } from "@/lib/web3";
 
+function connectorLabel(name: string) {
+  if (name === "Injected" || name === "Browser wallet") return "Browser wallet";
+  return name;
+}
+
 export function ConnectWallet({ compact = false }: { compact?: boolean }) {
   const { address, isConnected, chainId } = useAccount();
-  const { connectors, connect, isPending, error } = useConnect();
+  const { connectors, connectAsync, isPending, error, reset } = useConnect();
   const { disconnect } = useDisconnect();
   const { switchChain, isPending: isSwitching } = useSwitchChain();
   const [open, setOpen] = useState(false);
+  const [readyIds, setReadyIds] = useState<string[]>([]);
+  const [localError, setLocalError] = useState("");
   const rootRef = useRef<HTMLDivElement>(null);
   const wrongNetwork = isConnected && chainId !== base.id;
 
@@ -25,10 +32,63 @@ export function ConnectWallet({ compact = false }: { compact?: boolean }) {
     return () => document.removeEventListener("mousedown", onPointer);
   }, []);
 
-  const uniqueConnectors = connectors.filter(
-    (connector, index, list) =>
-      list.findIndex((item) => item.id === connector.id) === index,
-  );
+  useEffect(() => {
+    let cancelled = false;
+
+    async function detect() {
+      const ready: string[] = [];
+      for (const connector of connectors) {
+        try {
+          const provider = await connector.getProvider();
+          if (provider) ready.push(connector.uid);
+        } catch {
+          // Skip wallets that are listed but not actually injected.
+        }
+      }
+      if (!cancelled) setReadyIds(ready);
+    }
+
+    void detect();
+    const first = window.setTimeout(() => void detect(), 400);
+    const second = window.setTimeout(() => void detect(), 1500);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(first);
+      window.clearTimeout(second);
+    };
+  }, [connectors]);
+
+  const visibleConnectors = connectors.filter((connector, index, list) => {
+    const first = list.findIndex((item) => item.id === connector.id) === index;
+    if (!first) return false;
+    if (connector.id === "coinbaseWalletSDK" || connector.type === "coinbaseWallet") {
+      return true;
+    }
+    return readyIds.includes(connector.uid);
+  });
+
+  async function onConnect(connector: (typeof connectors)[number]) {
+    setLocalError("");
+    reset();
+    try {
+      await connectAsync({ connector, chainId: base.id });
+      setOpen(false);
+    } catch (caught) {
+      const message =
+        caught instanceof Error ? caught.message : "Could not connect wallet.";
+      if (message.includes("Provider not found")) {
+        setLocalError(
+          "No browser wallet was found. Install MetaMask or Coinbase Wallet, then refresh.",
+        );
+        return;
+      }
+      if (message.toLowerCase().includes("rejected") || message.toLowerCase().includes("denied")) {
+        setLocalError("Connection was cancelled.");
+        return;
+      }
+      setLocalError(message.replace(/\s*Version:.*$/u, ""));
+    }
+  }
 
   return (
     <div ref={rootRef} className="relative">
@@ -99,25 +159,49 @@ export function ConnectWallet({ compact = false }: { compact?: boolean }) {
                 Connect wallet
               </p>
               <p className="mt-2 px-2 text-xs leading-5 text-[#9aa4af]">
-                Use a Base-ready wallet to swap $ELITE and $ELTZ on this site.
+                Use MetaMask, Coinbase Wallet, or another Base-ready wallet.
               </p>
               <div className="mt-3 flex flex-col gap-2">
-                {uniqueConnectors.map((connector) => (
+                {visibleConnectors.map((connector) => (
                   <button
                     key={connector.uid}
                     type="button"
                     disabled={isPending}
-                    onClick={() => connect({ connector, chainId: base.id })}
+                    onClick={() => void onConnect(connector)}
                     className="rounded-xl border border-[rgba(243,234,216,0.12)] px-3 py-2.5 text-left text-sm text-[#f3ead8] transition hover:border-[#1ad4c8]"
                   >
-                    {connector.name === "Injected"
-                      ? "Browser wallet"
-                      : connector.name}
+                    {connectorLabel(connector.name)}
                   </button>
                 ))}
               </div>
-              {error ? (
-                <p className="mt-2 px-2 text-xs text-[#e8b07a]">{error.message}</p>
+              {visibleConnectors.length === 0 ? (
+                <p className="mt-2 px-2 text-xs leading-5 text-[#e8b07a]">
+                  No browser wallet detected yet. Install one, then refresh.
+                </p>
+              ) : null}
+              <div className="mt-3 flex flex-col gap-1 px-2 text-xs">
+                <a
+                  href="https://metamask.io/download"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#1ad4c8] hover:text-white"
+                >
+                  Install MetaMask
+                </a>
+                <a
+                  href="https://www.coinbase.com/wallet/downloads"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#1ad4c8] hover:text-white"
+                >
+                  Install Coinbase Wallet
+                </a>
+              </div>
+              {localError || error ? (
+                <p className="mt-2 px-2 text-xs text-[#e8b07a]">
+                  {localError ||
+                    error?.message.replace(/\s*Version:.*$/u, "")}
+                </p>
               ) : null}
             </>
           )}

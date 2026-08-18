@@ -10,7 +10,10 @@ export const WETH = "0x4200000000000000000000000000000000000006" as const;
 export const wagmiConfig = createConfig({
   chains: [base],
   connectors: [
-    injected({ shimDisconnect: true }),
+    injected({
+      shimDisconnect: true,
+      unstable_shimAsyncInject: 3_000,
+    }),
     coinbaseWallet({
       appName: "Elitez",
       preference: { options: "all" },
