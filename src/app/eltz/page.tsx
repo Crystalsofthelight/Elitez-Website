@@ -18,7 +18,7 @@ export default function EltzPage() {
       <PageHero
         kicker="Base / $ELTZ"
         title="Elitez Chip. A native B20 token."
-        lede="$ELTZ launched shortly after B20 activated on Base mainnet. It is fully live for transfers, minting, and burning, and is used for play inside Dream Crafter. It is not an investment or a claim on royalties."
+        lede="$ELTZ launched shortly after B20 activated on Base mainnet. It is fully live for transfers, minting, and burning, and is used for play inside Dream Crafter."
       />
 
       <section className="mx-auto max-w-6xl px-5">

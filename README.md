@@ -40,4 +40,4 @@ npm start
 - `$ELITE` contract on Base: `0xeb9d07e8a5e1f8a2dbc5abc84d91aaa0301829e3`
 - `$ELTZ` contract on Base: `0xB200000000000000000000B34597aFF8EA532A60`
 - Dream Crafter is 18+
-- The token is not presented as an investment
+

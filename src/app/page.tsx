@@ -201,8 +201,7 @@ export default function Home() {
               </h2>
               <p className="mt-5 leading-8 text-[#b7bfc8]">
                 $ELITE and $ELTZ are separate assets. Each has its own
-                contract, supply, and page. Holding either token does not grant
-                ownership, royalties, or profit rights.
+                contract, supply, and page.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="/elite">$ELITE</Button>

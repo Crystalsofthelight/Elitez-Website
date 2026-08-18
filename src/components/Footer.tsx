@@ -110,8 +110,7 @@ export function Footer() {
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-6 text-xs leading-6 text-[#7f8892] md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Elitez. All rights reserved.</p>
           <p>
-            $ELITE and $ELTZ are not investments. Dream Crafter is intended
-            for adults 18+ where legally permitted.
+            Dream Crafter is intended for adults 18+ where legally permitted.
           </p>
         </div>
       </div>

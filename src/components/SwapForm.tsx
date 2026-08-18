@@ -488,7 +488,7 @@ export function SwapForm() {
       </button>
 
       <p className="mt-3 px-1 text-xs leading-5 text-[#6b7280]">
-        1% slippage · Base network · Not financial advice
+        1% slippage · Base network
       </p>
       {quoteError ? (
         <p className="mt-2 text-sm text-[#e8b07a]">{quoteError}</p>

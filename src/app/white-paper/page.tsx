@@ -130,11 +130,6 @@ export default function WhitePaperPage() {
           <section>
             <h2 className="font-display text-3xl">Key disclosures</h2>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-[#b7bfc8]">
-              <li>Elite Token is not an investment vehicle.</li>
-              <li>
-                Holding the token does not grant ownership, profit rights,
-                dividends, or claims to royalties.
-              </li>
               <li>Liquidity contributions are voluntary and subject to change.</li>
               <li>Cryptocurrency markets are volatile and involve risk.</li>
               <li>

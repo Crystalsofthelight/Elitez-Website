@@ -21,15 +21,12 @@ export default function LegalPage() {
       <section className="mx-auto max-w-3xl space-y-10 px-5 pb-16 text-[1.02rem] leading-8 text-[#c8c1b2]">
         <div>
           <h2 className="font-display text-3xl text-[#f3ead8]">
-            No investment offering
+            Elite tokens
           </h2>
           <p className="mt-4">
             Elite Token (“Elite”) and Elitez Chip (“ELTZ”) are digital tokens
-            created for participation within the Elite ecosystem. They are not
-            investments, securities, shares, derivatives, or financial
-            instruments of any kind. Ownership or holding of $ELITE or $ELTZ
-            does not grant holders any right to profits,
-            dividends, revenue, royalties, or distributions of any kind.
+            in the Elite ecosystem. This site is informational and describes
+            how they are used across music, community, and Dream Crafter.
           </p>
         </div>
 

@@ -19,7 +19,7 @@ export default function ElitePage() {
       <PageHero
         kicker="Base / $ELITE"
         title="The creator token behind the catalog."
-        lede="Elite Token is a creator-led asset on Base. It is not an investment, security, or claim on royalties. It exists so people can participate in the Elitez world — including play inside Dream Crafter."
+        lede="Elite Token is a creator-led asset on Base. It exists so people can participate in the Elitez world — including play inside Dream Crafter."
       />
 
       <section className="mx-auto max-w-6xl px-5">
