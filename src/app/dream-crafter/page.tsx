@@ -7,7 +7,7 @@ import { dreamFeatures, links } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Dream Crafter",
   description:
-    "Dream Crafter is a wallet-connected Base arcade and creator app: live games, custom reels, collectible minting, staking, and onchain rewards.",
+    "Dream Crafter is a wallet-connected Base arcade and creator app. Sign in with a CDP email wallet, and gas fees are sponsored by CrystalsoftheLight via Paymaster.",
 };
 
 export default function DreamCrafterPage() {
@@ -16,7 +16,7 @@ export default function DreamCrafterPage() {
       <PageHero
         kicker="Elitez.app · Google Play"
         title="Dream Crafter is the playable Elitez world."
-        lede="A Base-powered arcade, creator, and collectible platform. Connect a wallet, play, build, mint, and compete — with $ELITE and $ELTZ in the same session."
+        lede="A Base-powered arcade, creator, and collectible platform. Connect a wallet or create one with email, play, build, mint, and compete — with $ELITE and $ELTZ in the same session. Gas is sponsored."
       />
 
       <section className="mx-auto max-w-6xl px-5">
@@ -52,7 +52,7 @@ export default function DreamCrafterPage() {
           {[
             {
               title: "Wallet-connected play",
-              body: "Base network sessions with deposits, claims, swaps, withdrawals, and demo mode for learning the floor.",
+              body: "Base network sessions with deposits, claims, swaps, withdrawals, and demo mode. Create or sign in with a CDP email wallet — no extension required.",
             },
             {
               title: "Creator economy",
@@ -68,6 +68,30 @@ export default function DreamCrafterPage() {
               <p className="mt-3 text-sm leading-7 text-[#9aa4af]">{item.body}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 pb-16">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="panel rounded-[2rem] p-7">
+            <p className="kicker">Paymaster</p>
+            <h2 className="font-display mt-3 text-3xl">Gas is sponsored.</h2>
+            <p className="mt-4 text-sm leading-7 text-[#b7bfc8]">
+              Onchain actions in Dream Crafter are covered by a Paymaster.
+              CrystalsoftheLight sponsors gas so you can play, mint, and move
+              value on Base without holding ETH just to pay network fees.
+            </p>
+          </div>
+          <div className="panel rounded-[2rem] p-7">
+            <p className="kicker">CDP email wallets</p>
+            <h2 className="font-display mt-3 text-3xl">Sign in with email.</h2>
+            <p className="mt-4 text-sm leading-7 text-[#b7bfc8]">
+              New and returning players can create or sign in with a CDP email
+              wallet from Coinbase Developer Platform. You still get a Base
+              wallet — you just start with an email instead of an extension.
+              Regular wallets remain supported.
+            </p>
+          </div>
         </div>
       </section>
 
