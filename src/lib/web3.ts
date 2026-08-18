@@ -10,7 +10,10 @@ export const wagmiConfig = createConfig({
   chains: [base],
   connectors: [
     injected({ shimDisconnect: true }),
-    coinbaseWallet({ appName: "Elitez", preference: "all" }),
+    coinbaseWallet({
+      appName: "Elitez",
+      preference: { options: "all" },
+    }),
   ],
   transports: {
     [base.id]: http(),
