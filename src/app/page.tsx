@@ -241,20 +241,21 @@ export default function Home() {
             </div>
           </div>
           <div className="panel rounded-[2rem] p-8">
-            <p className="kicker">About</p>
-            <h2 className="font-display mt-3 text-3xl">CrystalsoftheLight</h2>
+            <p className="kicker">Stay connected</p>
+            <h2 className="font-display mt-3 text-3xl">Community</h2>
             <p className="mt-4 text-sm leading-7 text-[#b7bfc8]">
-              Elitez is led by William Derek O’Malley (CrystalsoftheLight),
-              building the music catalog, $ELITE, $ELTZ, and Dream Crafter from
-              Canada. The same team publishes on Google Play as Crystals of the
-              Light.
+              Follow Elitez on Facebook, X, Telegram, and YouTube. Dream Crafter
+              is listed on Google Play.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button href={links.xFounder} variant="ghost" external>
-                X @DerekOMalley3
-              </Button>
               <Button href={links.telegram} variant="ghost" external>
                 Telegram
+              </Button>
+              <Button href={links.xTeam} variant="ghost" external>
+                X @elitebasetoken
+              </Button>
+              <Button href={links.xFounder} variant="ghost" external>
+                X @DerekOMalley3
               </Button>
               <Button href="/community" variant="ghost">
                 Community
