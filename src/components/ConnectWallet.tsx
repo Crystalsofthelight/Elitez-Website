@@ -58,6 +58,14 @@ export function ConnectWallet({ compact = false }: { compact?: boolean }) {
     };
   }, [connectors]);
 
+  function isCoinbase(connector: (typeof connectors)[number]) {
+    return (
+      connector.id === "coinbaseWalletSDK" ||
+      connector.type === "coinbaseWallet" ||
+      connector.name.toLowerCase().includes("coinbase")
+    );
+  }
+
   const visibleConnectors = connectors.filter((connector, index, list) => {
     const first = list.findIndex((item) => item.id === connector.id) === index;
     if (!first) return false;
@@ -168,9 +176,15 @@ export function ConnectWallet({ compact = false }: { compact?: boolean }) {
                     type="button"
                     disabled={isPending}
                     onClick={() => void onConnect(connector)}
-                    className="rounded-xl border border-[rgba(243,234,216,0.12)] px-3 py-2.5 text-left text-sm text-[#f3ead8] transition hover:border-[#1ad4c8]"
+                    className={
+                      isCoinbase(connector)
+                        ? "rounded-full bg-[#0052ff] px-3 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-[#0041cc] disabled:opacity-60"
+                        : "rounded-xl border border-[rgba(243,234,216,0.12)] px-3 py-2.5 text-left text-sm text-[#f3ead8] transition hover:border-[#1ad4c8]"
+                    }
                   >
-                    {connectorLabel(connector.name)}
+                    {isCoinbase(connector)
+                      ? "Coinbase Wallet"
+                      : connectorLabel(connector.name)}
                   </button>
                 ))}
               </div>
