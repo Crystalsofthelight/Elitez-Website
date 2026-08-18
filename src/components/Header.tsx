@@ -46,6 +46,13 @@ export function Header() {
               </Link>
             );
           })}
+          <a
+            href={links.flyer}
+            download="Elitez-Flyer-Printable.pdf"
+            className="text-sm tracking-wide text-[#c8c1b2] transition hover:text-white"
+          >
+            Flyer
+          </a>
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -85,6 +92,13 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
+              <a
+                href={links.flyer}
+                download="Elitez-Flyer-Printable.pdf"
+                className="rounded-xl px-3 py-3 text-base text-[#f3ead8]"
+              >
+                Download flyer
+              </a>
               <a
                 href={links.app}
                 target="_blank"
