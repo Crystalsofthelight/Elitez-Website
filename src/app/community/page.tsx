@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Button } from "@/components/Button";
 import { CopyButton } from "@/components/CopyButton";
 import { PageHero } from "@/components/PageHero";
@@ -18,6 +19,7 @@ export default function CommunityPage() {
         kicker="Stay connected"
         title="Find Elitez on the open web."
         lede="$ELITE and $ELTZ back the ecosystem across social channels and Dream Crafter on Base."
+        image="/brand/crystals-of-the-light.jpg"
       />
 
       <section className="mx-auto max-w-6xl px-5">
@@ -66,11 +68,26 @@ export default function CommunityPage() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="panel lift rounded-3xl p-6"
+              className={`panel lift rounded-3xl p-6 ${
+                "mark" in item && item.mark
+                  ? "flex items-center justify-between gap-4"
+                  : ""
+              }`}
             >
-              <h2 className="font-display text-2xl">{item.label}</h2>
-              <p className="mt-2 text-sm text-[#9aa4af]">{item.note}</p>
-              <p className="mt-5 text-sm text-[#1ad4c8]">Visit →</p>
+              <div>
+                <h2 className="font-display text-2xl">{item.label}</h2>
+                <p className="mt-2 text-sm text-[#9aa4af]">{item.note}</p>
+                <p className="mt-5 text-sm text-[#1ad4c8]">Visit →</p>
+              </div>
+              {"mark" in item && item.mark ? (
+                <Image
+                  src={item.mark}
+                  alt="Crystals of the Light"
+                  width={128}
+                  height={128}
+                  className="h-28 w-28 shrink-0 rounded-2xl"
+                />
+              ) : null}
             </a>
           ))}
         </div>

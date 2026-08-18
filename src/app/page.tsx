@@ -240,27 +240,36 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="panel rounded-[2rem] p-8">
-            <p className="kicker">Stay connected</p>
-            <h2 className="font-display mt-3 text-3xl">Community</h2>
-            <p className="mt-4 text-sm leading-7 text-[#b7bfc8]">
-              Follow Elitez on Facebook, X, Telegram, and YouTube. Dream Crafter
-              is listed on Google Play.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button href={links.telegram} variant="ghost" external>
-                Telegram
-              </Button>
-              <Button href={links.xTeam} variant="ghost" external>
-                X @elitebasetoken
-              </Button>
-              <Button href={links.xFounder} variant="ghost" external>
-                X @DerekOMalley3
-              </Button>
-              <Button href="/community" variant="ghost">
-                Community
-              </Button>
+          <div className="panel flex flex-col gap-6 rounded-[2rem] p-8 sm:flex-row sm:items-center">
+            <div className="min-w-0 flex-1">
+              <p className="kicker">Stay connected</p>
+              <h2 className="font-display mt-3 text-3xl">Community</h2>
+              <p className="mt-4 text-sm leading-7 text-[#b7bfc8]">
+                Follow Elitez on Facebook, X, Telegram, and YouTube. Dream
+                Crafter is listed on Google Play.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button href={links.telegram} variant="ghost" external>
+                  Telegram
+                </Button>
+                <Button href={links.xTeam} variant="ghost" external>
+                  X @elitebasetoken
+                </Button>
+                <Button href={links.xFounder} variant="ghost" external>
+                  X @DerekOMalley3
+                </Button>
+                <Button href="/community" variant="ghost">
+                  Community
+                </Button>
+              </div>
             </div>
+            <Image
+              src="/brand/crystals-of-the-light.jpg"
+              alt="Crystals of the Light"
+              width={176}
+              height={176}
+              className="h-36 w-36 shrink-0 self-center rounded-2xl sm:h-40 sm:w-40"
+            />
           </div>
         </div>
       </section>

@@ -377,7 +377,12 @@ export const socials = [
     note: "Buy and sell with the community",
   },
   { label: "X", href: links.xTeam, note: "@elitebasetoken" },
-  { label: "X", href: links.xFounder, note: "@DerekOMalley3" },
+  {
+    label: "X",
+    href: links.xFounder,
+    note: "@DerekOMalley3",
+    mark: "/brand/crystals-of-the-light.jpg",
+  },
   { label: "Telegram", href: links.telegram, note: "Elitez Official" },
   { label: "TikTok", href: links.tiktok, note: "@elite_token" },
   { label: "YouTube", href: links.youtube, note: "@ElitezOfficial" },
