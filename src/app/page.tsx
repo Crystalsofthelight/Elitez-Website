@@ -43,9 +43,6 @@ export default function Home() {
               $ELTZ
             </Button>
           </div>
-          <p className="mt-8 max-w-xl font-serif text-xl text-[#c8b88a] italic">
-            Only the ELITE will find the treasure.
-          </p>
         </div>
       </section>
 
