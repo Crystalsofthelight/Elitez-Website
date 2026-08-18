@@ -53,7 +53,15 @@ export default function EltzPage() {
           </p>
           <p className="mt-2 text-sm text-[#9aa4af]">
             {eltz.decimals} decimals · {eltz.supply} max supply · {eltz.holders}{" "}
-            holders
+            holders ·{" "}
+            <a
+              href={eltz.basescan}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#1ad4c8] hover:text-white"
+            >
+              View on BaseScan
+            </a>
           </p>
         </article>
       </section>

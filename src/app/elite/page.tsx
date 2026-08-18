@@ -53,7 +53,15 @@ export default function ElitePage() {
             {contract.address}
           </p>
           <p className="mt-2 text-sm text-[#9aa4af]">
-            {contract.decimals} decimals · {contract.holders} holders
+            {contract.decimals} decimals · {contract.holders} holders ·{" "}
+            <a
+              href={links.basescan}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#1ad4c8] hover:text-white"
+            >
+              View on BaseScan
+            </a>
           </p>
         </article>
       </section>

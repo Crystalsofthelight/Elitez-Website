@@ -19,34 +19,65 @@ export default function Home() {
         </div>
 
         <div className="relative mx-auto max-w-6xl px-5 pt-24 pb-20 md:pt-32 md:pb-28">
-          <p className="kicker rise">Music · Token · Arcade</p>
+          <p className="kicker rise">Music · Tokens · Arcade</p>
           <h1 className="font-display rise-2 mt-5 max-w-4xl text-[2.35rem] leading-[1.02] font-semibold tracking-tight break-words sm:text-5xl md:text-7xl">
             A creator-driven world
             <span className="gold-text"> on Base.</span>
           </h1>
           <p className="rise-3 mt-6 max-w-2xl text-base leading-8 text-[#d7d1c4] sm:text-lg md:text-xl">
-            Elitez brings original music, $ELITE, Elitez Chip ($ELTZ), and
-            Dream Crafter into one ecosystem — built from real creative work,
-            not speculation as a product.
+            Elitez is music, two Base tokens, and Dream Crafter in one
+            ecosystem: listen, play, and create.
           </p>
           <div className="rise-3 mt-8 flex flex-wrap gap-3">
-            <Button href={links.app} external>
+            <Button href={links.spotifyArtist} external>
+              Listen on Spotify
+            </Button>
+            <Button href={links.app} variant="teal" external>
               Launch Dream Crafter
             </Button>
-            <Button href="/music" variant="ghost">
-              Listen to Elitez
+            <Button href={links.uniswap} variant="ghost" external>
+              Buy $ELITE
             </Button>
-            <Button href="/elite" variant="ghost">
-              $ELITE
-            </Button>
-            <Button href="/eltz" variant="ghost">
-              $ELTZ
+            <Button href={links.telegram} variant="ghost" external>
+              Join Telegram
             </Button>
           </div>
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 pb-6">
+        <div className="grid gap-3 md:grid-cols-3">
+          {[
+            {
+              step: "01",
+              title: "Listen, play, create",
+              body: "Stream Elitez Music, open Dream Crafter, or mint a custom reel.",
+            },
+            {
+              step: "02",
+              title: "That activity supports the tokens",
+              body: "Music royalties may be allocated to liquidity. Play uses $ELITE and $ELTZ on Base.",
+            },
+            {
+              step: "03",
+              title: "The ecosystem stays in motion",
+              body: "$ELITE is the creator token. $ELTZ is Elitez Chip, a native B20 token for in-app utility.",
+            },
+          ].map((item) => (
+            <div key={item.step} className="panel rounded-3xl p-5">
+              <p className="kicker">{item.step}</p>
+              <h2 className="font-display mt-3 text-xl">{item.title}</h2>
+              <p className="mt-2 text-sm leading-7 text-[#9aa4af]">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-5 py-8">
+        <p className="kicker">Three pillars</p>
+        <h2 className="font-display mt-3 mb-6 text-3xl md:text-4xl">
+          Music. Tokens. Arcade.
+        </h2>
         <div className="grid gap-4 md:grid-cols-3">
           {pillars.map((pillar) => (
             <Link
@@ -94,6 +125,7 @@ export default function Home() {
               <li>Live slots, blackjack, Texas Hold-Em, pinball</li>
               <li>Reel Builder, gallery, and onchain minting</li>
               <li>$ELITE and $ELTZ as playable tokens</li>
+              <li>Demo mode to learn the floor before you play with tokens</li>
               <li>Available on the web and Google Play · 18+</li>
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -177,6 +209,58 @@ export default function Home() {
               </p>
             </a>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-10">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="panel rounded-[2rem] p-8">
+            <p className="kicker">Getting started</p>
+            <h2 className="font-display mt-3 text-3xl">New here?</h2>
+            <ol className="mt-5 space-y-3 text-sm leading-7 text-[#b7bfc8]">
+              <li>
+                <strong className="text-[#f3ead8]">1. Listen.</strong> Open
+                Elitez on Spotify or any major platform.
+              </li>
+              <li>
+                <strong className="text-[#f3ead8]">2. Get on Base.</strong> Use
+                Coinbase Wallet, MetaMask, or a CDP email wallet in Dream
+                Crafter.
+              </li>
+              <li>
+                <strong className="text-[#f3ead8]">3. Buy or play.</strong> Get
+                $ELITE or $ELTZ on Uniswap, or launch Dream Crafter in demo
+                mode first.
+              </li>
+            </ol>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href="/swap">Swap in site</Button>
+              <Button href="/faq" variant="ghost">
+                FAQ
+              </Button>
+            </div>
+          </div>
+          <div className="panel rounded-[2rem] p-8">
+            <p className="kicker">About</p>
+            <h2 className="font-display mt-3 text-3xl">CrystalsoftheLight</h2>
+            <p className="mt-4 text-sm leading-7 text-[#b7bfc8]">
+              Elitez is led by William Derek O’Malley (CrystalsoftheLight),
+              building the music catalog, $ELITE, $ELTZ, and Dream Crafter from
+              Canada. The same team publishes on Google Play as Crystals of the
+              Light.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href={links.xFounder} variant="ghost" external>
+                X @DerekOMalley3
+              </Button>
+              <Button href={links.telegram} variant="ghost" external>
+                Telegram
+              </Button>
+              <Button href="/community" variant="ghost">
+                Community
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 

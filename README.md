@@ -33,6 +33,7 @@ npm start
 | `/swap` | Connect wallet and swap $ELITE / $ELTZ |
 | `/white-paper` | White paper |
 | `/community` | Socials and support |
+| `/faq` | Common questions |
 | `/legal` | Disclaimers |
 
 ## Notes

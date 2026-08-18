@@ -377,7 +377,7 @@ export const socials = [
     note: "Buy and sell with the community",
   },
   { label: "X / Team", href: links.xTeam, note: "@elitebasetoken" },
-  { label: "X / Founder", href: links.xFounder, note: "@DerekOMalley3" },
+  { label: "X / Co-Founder", href: links.xFounder, note: "@DerekOMalley3" },
   { label: "Telegram", href: links.telegram, note: "Elitez Official" },
   { label: "TikTok", href: links.tiktok, note: "@elite_token" },
   { label: "YouTube", href: links.youtube, note: "@ElitezOfficial" },

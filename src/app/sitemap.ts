@@ -10,6 +10,7 @@ const routes = [
   "/swap",
   "/white-paper",
   "/community",
+  "/faq",
   "/legal",
 ];
 

@@ -17,10 +17,33 @@ export default function CommunityPage() {
       <PageHero
         kicker="Stay connected"
         title="The team is on the open web."
-        lede="The Elite token and Elitez Chip back multiple projects — tangible NFT work, music on every major streaming platform, social channels, and Dream Crafter on Base."
+        lede="Elitez is led by William Derek O’Malley (CrystalsoftheLight). The Elite token and Elitez Chip back music, social channels, and Dream Crafter on Base."
       />
 
       <section className="mx-auto max-w-6xl px-5">
+        <div className="panel mb-8 rounded-[2rem] p-8">
+          <p className="kicker">Team</p>
+          <h2 className="font-display mt-3 text-3xl">CrystalsoftheLight</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-[#b7bfc8]">
+            William Derek O’Malley builds Elitez Music, $ELITE, $ELTZ, and
+            Dream Crafter. The Google Play developer listing is Crystals of the
+            Light, based in Canada.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button href={links.xFounder} external>
+              X @DerekOMalley3
+            </Button>
+            <Button href={links.xTeam} variant="ghost" external>
+              X @elitebasetoken
+            </Button>
+            <Button href={links.telegram} variant="ghost" external>
+              Telegram
+            </Button>
+            <Button href={links.supportEmail} variant="ghost" external>
+              elite@elitez.xyz
+            </Button>
+          </div>
+        </div>
         <div className="grid gap-4 lg:grid-cols-2">
           <div className="panel rounded-[2rem] p-6 md:p-8">
             <div className="flex items-center gap-3">

@@ -62,6 +62,9 @@ export function Footer() {
                 {item.label}
               </Link>
             ))}
+            <Link href="/faq" className="hover:text-white">
+              FAQ
+            </Link>
             <Link href="/legal" className="hover:text-white">
               Legal
             </Link>

@@ -59,8 +59,8 @@ export default function DreamCrafterPage() {
               body: "Build custom reel machines, publish them socially, and mint them as Base collectibles.",
             },
             {
-              title: "Multi-token utility",
-              body: "$ELITE, $ELTZ, and other supported tokens can be used across games, staking, and launchpad surfaces.",
+              title: "Demo first, then tokens",
+              body: "Demo mode lets you learn wallets, deposits, and play flow without putting tokens at risk. Live play, staking, minting, and rewards use $ELITE, $ELTZ, and other supported tokens.",
             },
           ].map((item) => (
             <div key={item.title} className="panel rounded-3xl p-6">

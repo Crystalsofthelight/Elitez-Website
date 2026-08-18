@@ -39,7 +39,7 @@ export default function WhitePaperPage() {
       <PageHero
         kicker="Official paper"
         title="A creator-driven ecosystem."
-        lede="Elite Token integrates music, merchandising, NFTs, and community participation. This page is a clean presentation of the official Elite white paper — written for readers, not as a sales document."
+        lede="Elite Token integrates music, merchandising, NFTs, and community participation. This is the official Elitez white paper. Older /whitepaper links redirect here."
       />
 
       <section className="mx-auto max-w-3xl px-5">
