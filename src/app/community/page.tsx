@@ -76,6 +76,21 @@ export default function CommunityPage() {
         </div>
 
         <div className="mt-10 panel rounded-[2rem] p-8">
+          <p className="kicker">Print</p>
+          <h2 className="font-display mt-3 text-3xl">Printable flyer</h2>
+          <p className="mt-4 max-w-2xl leading-8 text-[#b7bfc8]">
+            Download the Elitez flyer as a PDF and print it for events, shops,
+            or the community. It covers $ELITE, $ELTZ, the music, and Dream
+            Crafter.
+          </p>
+          <div className="mt-6">
+            <Button href={links.flyer} download="Elitez-Flyer-Printable.pdf">
+              Download flyer
+            </Button>
+          </div>
+        </div>
+
+        <div className="mt-10 panel rounded-[2rem] p-8">
           <h2 className="font-display text-3xl">Support</h2>
           <p className="mt-4 max-w-2xl leading-8 text-[#b7bfc8]">
             Dream Crafter includes an in-app support guide for wallets,
@@ -83,7 +98,10 @@ export default function CommunityPage() {
             the Google Play listing, use the developer address below.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button href={`${links.app}`} external>
+            <Button href={links.facebookChat} external>
+              Facebook community chat
+            </Button>
+            <Button href={`${links.app}`} variant="ghost" external>
               In-app support
             </Button>
             <Button href={links.supportEmail} variant="ghost" external>

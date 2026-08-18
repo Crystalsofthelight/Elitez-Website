@@ -83,8 +83,17 @@ export function Footer() {
             <a href={links.facebook} target="_blank" rel="noopener noreferrer">
               Facebook
             </a>
+            <a href={links.facebookChat} target="_blank" rel="noopener noreferrer">
+              Community chat
+            </a>
+            <a href={links.flyer} download="Elitez-Flyer-Printable.pdf">
+              Download flyer
+            </a>
             <a href={links.xTeam} target="_blank" rel="noopener noreferrer">
-              X
+              X @elitebasetoken
+            </a>
+            <a href={links.xFounder} target="_blank" rel="noopener noreferrer">
+              X @DerekOMalley3
             </a>
             <a href={links.telegram} target="_blank" rel="noopener noreferrer">
               Telegram

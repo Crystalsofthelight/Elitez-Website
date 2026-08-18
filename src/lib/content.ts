@@ -59,6 +59,9 @@ export const links = {
   tiktok: "https://www.tiktok.com/@elite_token",
   facebook: "https://www.facebook.com/elitetokens/",
   facebookGroup: "https://www.facebook.com/groups/elitetoken/",
+  facebookChat:
+    "https://m.me/j/AbbDRBV5E5Jul1Ws/?send_source=gc%3Acopy_invite_link_c",
+  flyer: "/Elitez-Flyer-Printable.pdf",
   marketplace: "https://www.facebook.com/groups/elitemarketplace",
   xTeam: "https://x.com/elitebasetoken",
   xFounder: "https://x.com/DerekOMalley3",
@@ -362,13 +365,17 @@ export const socials = [
   { label: "Facebook", href: links.facebook, note: "Official team page" },
   { label: "Facebook Group", href: links.facebookGroup, note: "Community" },
   {
+    label: "Facebook Community Chat",
+    href: links.facebookChat,
+    note: "Join the Messenger group chat",
+  },
+  {
     label: "Elite Marketplace",
     href: links.marketplace,
     note: "Buy and sell with the community",
   },
   { label: "X / Team", href: links.xTeam, note: "@elitebasetoken" },
   { label: "X / Founder", href: links.xFounder, note: "@DerekOMalley3" },
-  { label: "X / NFT Rares", href: links.xNft, note: "Collectibles" },
   { label: "Telegram", href: links.telegram, note: "Elitez Official" },
   { label: "TikTok", href: links.tiktok, note: "@elite_token" },
   { label: "YouTube", href: links.youtube, note: "@ElitezOfficial" },

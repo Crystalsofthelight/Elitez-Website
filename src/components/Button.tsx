@@ -5,6 +5,7 @@ type Props = {
   children: React.ReactNode;
   variant?: "gold" | "ghost" | "teal";
   external?: boolean;
+  download?: string | boolean;
   className?: string;
 };
 
@@ -13,6 +14,7 @@ export function Button({
   children,
   variant = "gold",
   external,
+  download,
   className = "",
 }: Props) {
   const styles = {
@@ -23,6 +25,18 @@ export function Button({
   }[variant];
 
   const cls = `inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-wide transition ${styles} ${className}`;
+
+  if (download) {
+    return (
+      <a
+        href={href}
+        download={download === true ? true : download}
+        className={cls}
+      >
+        {children}
+      </a>
+    );
+  }
 
   if (external) {
     return (
