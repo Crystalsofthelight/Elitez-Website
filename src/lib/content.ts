@@ -158,12 +158,6 @@ export const dreamFeatures = [
     body: "Compete through profile identity and gallery rankings.",
   },
   {
-    title: "Texas Hold-Em",
-    href: "https://elitez.app/texas-holdem",
-    image: "/brand/dc-holdem.jpg",
-    body: "Wallet-connected poker inside the same Base entertainment suite.",
-  },
-  {
     title: "Pinball",
     href: "https://elitez.app/pinball",
     image: "/brand/dc-pinball.jpg",
@@ -174,6 +168,12 @@ export const dreamFeatures = [
     href: "https://elitez.app/b20",
     image: "/brand/dc-b20.jpg",
     body: "A launch surface for B20 tokens — Base’s protocol-level token standard — including $ELTZ.",
+  },
+  {
+    title: "Texas Hold-Em",
+    href: "https://elitez.app/texas-holdem",
+    image: "/brand/dc-holdem.jpg",
+    body: "Wallet-connected poker inside the same Base entertainment suite.",
   },
   {
     title: "Elitez Music",

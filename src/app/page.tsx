@@ -117,7 +117,7 @@ export default function Home() {
         </div>
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {dreamFeatures.slice(0, 8).map((feature) => (
+          {dreamFeatures.slice(0, 10).map((feature) => (
             <a
               key={feature.title}
               href={feature.href}
