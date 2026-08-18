@@ -27,7 +27,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://elitez.xyz"),
+  metadataBase: new URL("https://www.elitez.xyz"),
   title: {
     default: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
     template: "%s · Elitez",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
     description: site.description,
-    url: "https://elitez.xyz",
+    url: "https://www.elitez.xyz",
     siteName: "Elitez",
     locale: "en_US",
     type: "website",
