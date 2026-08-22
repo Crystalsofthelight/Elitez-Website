@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 
 export default function MusicPage() {
   const dreamer = youtubeChannels.find((channel) => channel.shortLabel === "Dreamer");
-  const dreamerVideos = dreamer && "videos" in dreamer ? dreamer.videos : [];
+  const dreamerVideos: string[] =
+    dreamer && "videos" in dreamer ? (dreamer.videos ?? []) : [];
 
   return (
     <>
