@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { cookieToInitialState } from "wagmi";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { MusicProvider } from "@/components/MusicProvider";
 import { Web3Provider } from "@/components/Web3Provider";
 import { site } from "@/lib/content";
 import { wagmiConfig } from "@/lib/web3";
@@ -79,13 +80,15 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full min-w-0 flex-col overflow-x-hidden">
         <Web3Provider initialState={initialState}>
-          <div className="grain" aria-hidden />
-          <Header />
-          <main id="content" className="relative z-10 w-full min-w-0 flex-1">
-            {children}
-          </main>
-          <Footer />
-          <Analytics />
+          <MusicProvider>
+            <div className="grain" aria-hidden />
+            <Header />
+            <main id="content" className="relative z-10 w-full min-w-0 flex-1">
+              {children}
+            </main>
+            <Footer />
+            <Analytics />
+          </MusicProvider>
         </Web3Provider>
       </body>
     </html>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ConnectWallet } from "@/components/ConnectWallet";
 import { scrollJukeboxIntoView } from "@/components/Jukebox";
+import { MusicToggle } from "@/components/MusicToggle";
 import { links, nav } from "@/lib/content";
 
 export function Header() {
@@ -63,12 +64,16 @@ export function Header() {
           </a>
         </nav>
 
-        <div className="hidden items-center lg:flex">
+        <div className="hidden flex-col items-end gap-1.5 lg:flex">
+          <MusicToggle />
           <ConnectWallet />
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <ConnectWallet compact />
+          <div className="flex flex-col items-end gap-1">
+            <MusicToggle compact />
+            <ConnectWallet compact />
+          </div>
         <details key={pathname} className="lg:hidden">
           <summary
             aria-label="Open menu"

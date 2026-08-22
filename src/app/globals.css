@@ -173,6 +173,30 @@ details[open] .menu-bar-3 {
   transform: translateY(-8px) rotate(-45deg);
 }
 
+@keyframes music-invite {
+  0%,
+  100% {
+    box-shadow:
+      0 0 6px rgba(196, 107, 255, 0.4),
+      0 0 14px rgba(26, 212, 200, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 0 16px rgba(196, 107, 255, 0.85),
+      0 0 32px rgba(122, 245, 238, 0.5);
+  }
+}
+
+.music-toggle-invite {
+  animation: music-invite 1.7s ease-in-out infinite;
+}
+
+.music-toggle-live {
+  box-shadow:
+    0 0 10px rgba(196, 107, 255, 0.55),
+    0 0 20px rgba(26, 212, 200, 0.35);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .rise,
   .rise-2,
@@ -180,5 +204,12 @@ details[open] .menu-bar-3 {
   .lift {
     animation: none;
     transition: none;
+  }
+
+  .music-toggle-invite {
+    animation: none;
+    box-shadow:
+      0 0 10px rgba(196, 107, 255, 0.55),
+      0 0 18px rgba(26, 212, 200, 0.3);
   }
 }

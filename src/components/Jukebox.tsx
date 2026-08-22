@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useMusic } from "@/components/MusicProvider";
 import { youtubeChannels } from "@/lib/content";
 
 const STORAGE_KEY = "elitez-jukebox";
@@ -22,6 +23,7 @@ type YTPlayer = {
     startSeconds?: number,
   ) => void;
   playVideo: () => void;
+  pauseVideo: () => void;
   stopVideo: () => void;
   nextVideo: () => void;
   previousVideo: () => void;
@@ -126,9 +128,11 @@ export function scrollJukeboxIntoView() {
 }
 
 export function Jukebox() {
+  const { on, setOn, register } = useMusic();
   const [activeId, setActiveId] = useState(youtubeChannels[0].id);
   const playerRef = useRef<YTPlayer | null>(null);
   const activeIdRef = useRef(activeId);
+  const onRef = useRef(on);
   const storeRef = useRef<Store>({
     activeId: youtubeChannels[0].id,
     progress: {},
@@ -137,6 +141,7 @@ export function Jukebox() {
   const switchingRef = useRef(false);
 
   activeIdRef.current = activeId;
+  onRef.current = on;
 
   function saveProgress() {
     const player = playerRef.current;
@@ -162,6 +167,7 @@ export function Jukebox() {
     activeIdRef.current = channel.id;
     storeRef.current = { ...storeRef.current, activeId: channel.id };
     writeStore(storeRef.current);
+    setOn(true);
     loadChannel(player, channel, resume);
     window.setTimeout(() => player.playVideo?.(), 400);
     window.setTimeout(() => {
@@ -242,7 +248,10 @@ export function Jukebox() {
         events: {
           onReady: () => {
             loadChannel(player, startChannel, resume);
-            window.setTimeout(() => player.playVideo?.(), 400);
+            window.setTimeout(() => {
+              if (onRef.current) player.playVideo?.();
+              else player.pauseVideo?.();
+            }, 400);
             interval = window.setInterval(saveProgress, 4000);
           },
           onStateChange: (event: { data: number }) => {
@@ -250,6 +259,10 @@ export function Jukebox() {
             if (!state) return;
             if (event.data === state.PLAYING) {
               switchingRef.current = false;
+              if (!onRef.current) {
+                player.pauseVideo?.();
+                return;
+              }
               saveProgress();
             }
             if (event.data === state.PAUSED) {
@@ -271,6 +284,10 @@ export function Jukebox() {
         },
       });
       playerRef.current = player;
+      register({
+        play: () => playerRef.current?.playVideo?.(),
+        pause: () => playerRef.current?.pauseVideo?.(),
+      });
     });
 
     const onLeave = () => saveProgress();
@@ -283,6 +300,7 @@ export function Jukebox() {
       window.removeEventListener("pagehide", onLeave);
       window.removeEventListener("beforeunload", onLeave);
       saveProgress();
+      register(null);
       playerRef.current?.destroy?.();
       playerRef.current = null;
     };
