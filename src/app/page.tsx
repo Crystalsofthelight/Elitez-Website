@@ -110,7 +110,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
+      <section className="mx-auto max-w-6xl px-5 pt-16 pb-8">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
             <p className="kicker">Featured product</p>
@@ -176,7 +176,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-12">
+      <section id="jukebox" className="mx-auto max-w-6xl scroll-mt-28 px-5 pt-6 pb-12">
         <div className="mb-8 text-center">
           <p className="kicker">Elitez Music</p>
           <h2 className="font-display mt-3 text-3xl md:text-4xl">The jukebox</h2>

@@ -34,7 +34,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-4 whitespace-nowrap xl:gap-6 lg:flex">
           {nav.map((item) => {
-            const active = pathname === item.href;
+            const active = !item.href.includes("#") && pathname === item.href;
             return (
               <Link
                 key={item.href}
@@ -79,8 +79,11 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={(event) => {
+                    event.currentTarget.closest("details")?.removeAttribute("open");
+                  }}
                   className={`rounded-xl px-3 py-3 text-base ${
-                    pathname === item.href
+                    !item.href.includes("#") && pathname === item.href
                       ? "bg-white/5 text-[#f3dc97]"
                       : "text-[#f3ead8]"
                   }`}

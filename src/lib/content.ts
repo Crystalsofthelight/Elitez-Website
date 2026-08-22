@@ -96,6 +96,7 @@ export const youtubeChannels = [
 export const nav = [
   { href: "/dream-crafter", label: "Dream Crafter" },
   { href: "/music", label: "Music" },
+  { href: "/#jukebox", label: "Jukebox" },
   { href: "/elite", label: "$ELITE" },
   { href: "/eltz", label: "$ELTZ" },
   { href: "/swap", label: "Swap" },
