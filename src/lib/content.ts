@@ -51,6 +51,16 @@ export const links = {
   spotifyArtist:
     "https://open.spotify.com/artist/2vKgjhjw9P5VFf1PxPYyzw?si=BHuVvB1_Qs6NqNDYXk7pxg",
   spotifyDreamer: "https://open.spotify.com/artist/4BL0oYWPORruCrIuxI4DZO",
+  spotifyDreamerAlbums: [
+    {
+      title: "One Hit Wonder",
+      id: "6UoaRQbsnooQ7VLHzPxpwH",
+    },
+    {
+      title: "Raw proof",
+      id: "7N0T7NuWbXWxr7RSftRzwd",
+    },
+  ],
   youtubeMusic:
     "https://music.youtube.com/channel/UCqd8kDNfsRNsLyABVeBQdeg",
   youtube: "https://www.youtube.com/@ElitezOfficial",

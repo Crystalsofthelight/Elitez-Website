@@ -70,16 +70,23 @@ export default function MusicPage() {
               Elite Dreamer is on Spotify and YouTube — One Hit Wonder and Raw
               proof.
             </p>
-            <div className="mt-6 overflow-hidden rounded-3xl border border-[rgba(215,179,90,0.16)]">
-              <iframe
-                title="Elite Dreamer on Spotify"
-                src="https://open.spotify.com/embed/artist/4BL0oYWPORruCrIuxI4DZO?utm_source=generator&theme=0"
-                width="100%"
-                height="352"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-                className="block"
-              />
+            <div className="mt-6 space-y-4">
+              {links.spotifyDreamerAlbums.map((album) => (
+                <div
+                  key={album.id}
+                  className="overflow-hidden rounded-3xl border border-[rgba(215,179,90,0.16)]"
+                >
+                  <iframe
+                    title={`${album.title} on Spotify`}
+                    src={`https://open.spotify.com/embed/album/${album.id}?utm_source=generator&theme=0`}
+                    width="100%"
+                    height="352"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    className="block"
+                  />
+                </div>
+              ))}
             </div>
             {dreamer && dreamerVideos.length > 0 ? (
               <div className="mt-6 overflow-hidden rounded-3xl border border-[rgba(215,179,90,0.16)]">
