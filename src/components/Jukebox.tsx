@@ -16,8 +16,13 @@ type Store = {
 };
 
 type YTPlayer = {
-  loadPlaylist: (args: Record<string, unknown>) => void;
+  loadPlaylist: (
+    playlist: string[] | Record<string, unknown>,
+    index?: number,
+    startSeconds?: number,
+  ) => void;
   playVideo: () => void;
+  stopVideo: () => void;
   nextVideo: () => void;
   previousVideo: () => void;
   getCurrentTime: () => number;
@@ -79,23 +84,27 @@ function loadChannel(
   resume?: Progress,
 ) {
   const index = resume?.playlistIndex ?? 0;
-  const startSeconds = resume?.time ?? 0;
+  const startSeconds = (resume?.time ?? 0) > 1 ? resume?.time ?? 0 : 0;
+
+  try {
+    player.stopVideo?.();
+  } catch {
+    /* player may not be playing yet */
+  }
 
   if ("videos" in channel && channel.videos?.length) {
-    player.loadPlaylist({
-      playlist: channel.videos,
-      index,
-      startSeconds,
-    });
+    player.loadPlaylist(channel.videos, index, startSeconds);
     return;
   }
 
-  player.loadPlaylist({
-    listType: "playlist",
-    list: channel.id.replace(/^UC/, "UU"),
-    index,
-    startSeconds,
-  });
+  player.loadPlaylist(
+    {
+      listType: "playlist",
+      list: channel.id.replace(/^UC/, "UU"),
+      index,
+      startSeconds,
+    },
+  );
 }
 
 function isLastItem(player: YTPlayer, channel: Channel) {
@@ -125,6 +134,7 @@ export function Jukebox() {
     progress: {},
   });
   const advancingRef = useRef(false);
+  const switchingRef = useRef(false);
 
   activeIdRef.current = activeId;
 
@@ -147,12 +157,16 @@ export function Jukebox() {
   function playChannel(channel: Channel, resume?: Progress) {
     const player = playerRef.current;
     if (!player) return;
+    switchingRef.current = true;
     setActiveId(channel.id);
     activeIdRef.current = channel.id;
     storeRef.current = { ...storeRef.current, activeId: channel.id };
     writeStore(storeRef.current);
     loadChannel(player, channel, resume);
     window.setTimeout(() => player.playVideo?.(), 400);
+    window.setTimeout(() => {
+      switchingRef.current = false;
+    }, 1500);
   }
 
   function shiftChannel(step: number) {
@@ -234,10 +248,18 @@ export function Jukebox() {
           onStateChange: (event: { data: number }) => {
             const state = window.YT?.PlayerState;
             if (!state) return;
-            if (event.data === state.PAUSED || event.data === state.PLAYING) {
+            if (event.data === state.PLAYING) {
+              switchingRef.current = false;
               saveProgress();
             }
-            if (event.data === state.ENDED && !advancingRef.current) {
+            if (event.data === state.PAUSED) {
+              saveProgress();
+            }
+            if (
+              event.data === state.ENDED &&
+              !advancingRef.current &&
+              !switchingRef.current
+            ) {
               saveProgress();
               const channel =
                 youtubeChannels.find(
@@ -353,6 +375,8 @@ export function Jukebox() {
               key={channel.id}
               type="button"
               onClick={() => {
+                if (channel.id === activeIdRef.current) return;
+                switchingRef.current = true;
                 saveProgress();
                 playChannel(channel, storeRef.current.progress[channel.id]);
               }}
