@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/Button";
 import { PageHero } from "@/components/PageHero";
-import { albums, links, platforms, tracks } from "@/lib/content";
+import { albums, links, platforms, tracks, youtubeChannels } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Elitez Music",
@@ -11,6 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function MusicPage() {
+  const dreamer = youtubeChannels.find((channel) => channel.shortLabel === "Dreamer");
+  const dreamerVideos = dreamer && "videos" in dreamer ? dreamer.videos : [];
+
   return (
     <>
       <PageHero
@@ -58,6 +61,46 @@ export default function MusicPage() {
                 loading="lazy"
                 className="block"
               />
+            </div>
+
+            <p className="kicker mt-10">Elite Dreamer</p>
+            <h2 className="font-display mt-3 text-4xl">Also on Spotify</h2>
+            <p className="mt-4 leading-8 text-[#b7bfc8]">
+              Elite Dreamer is on Spotify and YouTube — One Hit Wonder and Raw
+              proof.
+            </p>
+            <div className="mt-6 overflow-hidden rounded-3xl border border-[rgba(215,179,90,0.16)]">
+              <iframe
+                title="Elite Dreamer on Spotify"
+                src="https://open.spotify.com/embed/artist/4BL0oYWPORruCrIuxI4DZO?utm_source=generator&theme=0"
+                width="100%"
+                height="352"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="block"
+              />
+            </div>
+            {dreamer && dreamerVideos.length > 0 ? (
+              <div className="mt-6 overflow-hidden rounded-3xl border border-[rgba(215,179,90,0.16)]">
+                <iframe
+                  title="Elite Dreamer on YouTube"
+                  src={`https://www.youtube-nocookie.com/embed/${dreamerVideos[0]}?playlist=${dreamerVideos.join(",")}&rel=0&modestbranding=1`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                  className="aspect-video w-full"
+                />
+              </div>
+            ) : null}
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Button href={links.spotifyDreamer} variant="ghost" external>
+                Open on Spotify
+              </Button>
+              {dreamer ? (
+                <Button href={dreamer.href} variant="ghost" external>
+                  Open on YouTube
+                </Button>
+              ) : null}
             </div>
           </div>
           <div className="panel rounded-[2rem] p-8">
