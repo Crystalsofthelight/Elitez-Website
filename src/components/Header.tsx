@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ConnectWallet } from "@/components/ConnectWallet";
+import { scrollJukeboxIntoView } from "@/components/Jukebox";
 import { links, nav } from "@/lib/content";
 
 export function Header() {
@@ -39,6 +40,12 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={(event) => {
+                  if (item.href !== "/#jukebox" || pathname !== "/") return;
+                  event.preventDefault();
+                  window.history.pushState(null, "", "/#jukebox");
+                  scrollJukeboxIntoView();
+                }}
                 className={`text-sm tracking-wide transition ${
                   active ? "text-[#f3dc97]" : "text-[#c8c1b2] hover:text-white"
                 }`}
@@ -81,6 +88,10 @@ export function Header() {
                   href={item.href}
                   onClick={(event) => {
                     event.currentTarget.closest("details")?.removeAttribute("open");
+                    if (item.href !== "/#jukebox" || pathname !== "/") return;
+                    event.preventDefault();
+                    window.history.pushState(null, "", "/#jukebox");
+                    scrollJukeboxIntoView();
                   }}
                   className={`rounded-xl px-3 py-3 text-base ${
                     !item.href.includes("#") && pathname === item.href

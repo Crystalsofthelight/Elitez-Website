@@ -108,6 +108,14 @@ function isLastItem(player: YTPlayer, channel: Channel) {
   return false;
 }
 
+export function scrollJukeboxIntoView() {
+  document.getElementById("jukebox")?.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+    inline: "nearest",
+  });
+}
+
 export function Jukebox() {
   const [activeId, setActiveId] = useState(youtubeChannels[0].id);
   const playerRef = useRef<YTPlayer | null>(null);
@@ -260,6 +268,18 @@ export function Jukebox() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const center = () => {
+      if (window.location.hash === "#jukebox") scrollJukeboxIntoView();
+    };
+    const timer = window.setTimeout(center, 80);
+    window.addEventListener("hashchange", center);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("hashchange", center);
+    };
+  }, []);
+
   const active =
     youtubeChannels.find((channel) => channel.id === activeId) ??
     youtubeChannels[0];
@@ -268,7 +288,10 @@ export function Jukebox() {
     "rounded-full border-2 border-[#1ad4c8] py-2.5 text-xs font-bold uppercase transition";
 
   return (
-    <div className="mx-auto w-full max-w-[28rem] rounded-[1.6rem] border-2 border-[#1ad4c8] bg-[#061018] p-3 shadow-[0_0_40px_rgba(26,212,200,0.12)] sm:p-4">
+    <div
+      id="jukebox"
+      className="mx-auto w-full max-w-[28rem] rounded-[1.6rem] border-2 border-[#1ad4c8] bg-[#061018] p-3 shadow-[0_0_40px_rgba(26,212,200,0.12)] sm:p-4"
+    >
       <div className="relative overflow-hidden rounded-[1.1rem]">
         <video
           className="h-auto w-full"

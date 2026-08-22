@@ -176,7 +176,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="jukebox" className="mx-auto max-w-6xl scroll-mt-28 px-5 pt-6 pb-12">
+      <section className="mx-auto max-w-6xl px-5 pt-6 pb-12">
         <div className="mb-8 text-center">
           <p className="kicker">Elitez Music</p>
           <h2 className="font-display mt-3 text-3xl md:text-4xl">The jukebox</h2>
