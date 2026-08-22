@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/Button";
+import { Jukebox } from "@/components/Jukebox";
 import { albums, dreamFeatures, links, pillars } from "@/lib/content";
 
 export default function Home() {
@@ -173,6 +174,14 @@ export default function Home() {
             </a>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-12">
+        <div className="mb-8 text-center">
+          <p className="kicker">Elitez Music</p>
+          <h2 className="font-display mt-3 text-3xl md:text-4xl">The jukebox</h2>
+        </div>
+        <Jukebox />
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-8">

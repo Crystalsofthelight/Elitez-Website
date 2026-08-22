@@ -71,6 +71,28 @@ export const links = {
   supportEmailAlt: "mailto:CrystalsoftheLight333@gmail.com",
 };
 
+export const youtubeChannels = [
+  {
+    id: "UCcifjz0ZTTZqlhTdu5liDyg",
+    label: "Elite Dreamer",
+    shortLabel: "Dreamer",
+    href: "https://www.youtube.com/channel/UCcifjz0ZTTZqlhTdu5liDyg",
+    videos: ["HLoIEDZtXXM", "BxKwt85fVls"],
+  },
+  {
+    id: "UCiq5g3G-mllT_X0R5Qm4CpQ",
+    label: "Elitez Official",
+    shortLabel: "Official",
+    href: "https://www.youtube.com/@ElitezOfficial",
+  },
+  {
+    id: "UCqd8kDNfsRNsLyABVeBQdeg",
+    label: "Elitez Topic",
+    shortLabel: "Topic",
+    href: "https://www.youtube.com/channel/UCqd8kDNfsRNsLyABVeBQdeg",
+  },
+];
+
 export const nav = [
   { href: "/dream-crafter", label: "Dream Crafter" },
   { href: "/music", label: "Music" },
