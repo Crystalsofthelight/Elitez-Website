@@ -5,6 +5,28 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   allowedDevOrigins: ["10.0.0.66", "127.0.0.1", "localhost"],
+  async headers() {
+    return [
+      {
+        source: "/og-card.png",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, immutable",
+          },
+        ],
+      },
+      {
+        source: "/og.png",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, immutable",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {
