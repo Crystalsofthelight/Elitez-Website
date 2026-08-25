@@ -53,6 +53,10 @@ export const links = {
   spotifyDreamer: "https://open.spotify.com/artist/4BL0oYWPORruCrIuxI4DZO",
   spotifyDreamerAlbums: [
     {
+      title: "The Long Game",
+      id: "7Kdh1VpRWtG0Y16ProHPjh",
+    },
+    {
       title: "One Hit Wonder",
       id: "6UoaRQbsnooQ7VLHzPxpwH",
     },
@@ -88,7 +92,7 @@ export const youtubeChannels = [
     label: "Elite Dreamer",
     shortLabel: "Dreamer",
     href: "https://www.youtube.com/channel/UCcifjz0ZTTZqlhTdu5liDyg",
-    videos: ["HLoIEDZtXXM", "BxKwt85fVls"],
+    videos: ["_iD3rJeSufc", "HLoIEDZtXXM", "BxKwt85fVls"],
   },
   {
     id: "UCiq5g3G-mllT_X0R5Qm4CpQ",

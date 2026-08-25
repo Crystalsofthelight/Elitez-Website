@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og.png",
+        url: "https://www.elitez.xyz/og.png",
         width: 1200,
         height: 630,
         alt: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Elitez — Music, $ELITE, $ELTZ, and Dream Crafter",
     description: site.description,
-    images: ["/og.png"],
+    images: ["https://www.elitez.xyz/og.png"],
   },
 
 };
