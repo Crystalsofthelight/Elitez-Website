@@ -23,12 +23,13 @@ export const eltz = {
   name: "Elitez Chip",
   standard: "B20",
   address: "0xB200000000000000000000B34597aFF8EA532A60",
+  pair: "0xE4Eea02eBB8cFCc006DA00881a847a2a5CA55F37",
   decimals: 18,
   holders: "45",
   supply: "1,000,000",
   icon: "/brand/eltz-token-icon.gif",
   dexscreener:
-    "https://dexscreener.com/base/0x1d16828013717afd3867415642bd8b4ad9ebe0d1f0e08276ccb23f7b0c1280c2",
+    "https://dexscreener.com/base/0xE4Eea02eBB8cFCc006DA00881a847a2a5CA55F37",
   basescan:
     "https://basescan.org/token/0xB200000000000000000000B34597aFF8EA532A60",
   uniswap: `https://app.uniswap.org/explore/tokens/base/0xB200000000000000000000B34597aFF8EA532A60`,
@@ -468,7 +469,7 @@ export const eltzMarkets = [
   {
     label: "DEX Screener",
     href: eltz.dexscreener,
-    body: "ELTZ / ETH pair on Base.",
+    body: "ELTZ / WETH Uniswap v3 pair on Base.",
   },
   {
     label: "Uniswap",
