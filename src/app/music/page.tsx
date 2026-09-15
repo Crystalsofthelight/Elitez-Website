@@ -67,8 +67,9 @@ export default function MusicPage() {
             <p className="kicker mt-10">Elite Dreamer</p>
             <h2 className="font-display mt-3 text-4xl">Also on Spotify</h2>
             <p className="mt-4 leading-8 text-[#b7bfc8]">
-              Elite Dreamer is on Spotify and YouTube — Destined, The Long
-              Game, One Hit Wonder, and Raw proof.
+              Elite Dreamer is on Spotify and YouTube — In The Open,
+              Queendovah, Destined, The Long Game, One Hit Wonder, and Raw
+              proof.
             </p>
             <div className="mt-6 space-y-4">
               {links.spotifyDreamerAlbums.map((album) => (

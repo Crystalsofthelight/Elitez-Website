@@ -54,6 +54,14 @@ export const links = {
   spotifyDreamer: "https://open.spotify.com/artist/4BL0oYWPORruCrIuxI4DZO",
   spotifyDreamerAlbums: [
     {
+      title: "In The Open",
+      id: "4Lj3qJEstLqEKH7bmGbhie",
+    },
+    {
+      title: "Queendovah",
+      id: "5LpyjMdvjFDGUUutKzPnVo",
+    },
+    {
       title: "Destined",
       id: "7ne7RcXr8iFo0efaFsPigN",
     },
@@ -97,7 +105,14 @@ export const youtubeChannels = [
     label: "Elite Dreamer",
     shortLabel: "Dreamer",
     href: "https://www.youtube.com/channel/UCcifjz0ZTTZqlhTdu5liDyg",
-    videos: ["sZ8ik6xuGZs", "_iD3rJeSufc", "HLoIEDZtXXM", "BxKwt85fVls"],
+    videos: [
+      "RdiK8If1mb4",
+      "iJLc1OICwBI",
+      "sZ8ik6xuGZs",
+      "_iD3rJeSufc",
+      "HLoIEDZtXXM",
+      "BxKwt85fVls",
+    ],
   },
   {
     id: "UCiq5g3G-mllT_X0R5Qm4CpQ",
