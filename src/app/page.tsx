@@ -56,7 +56,7 @@ export default function Home() {
             },
             {
               step: "02",
-              title: "That activity supports the tokens",
+              title: "That activity supports the ecosystem.",
               body: "Music royalties may be allocated to liquidity. Play uses $ELITE and $ELTZ on Base.",
             },
             {
@@ -297,7 +297,7 @@ export default function Home() {
             <div className="p-8 md:p-12">
               <p className="kicker">Tokens</p>
               <h2 className="font-display mt-4 text-3xl md:text-4xl">
-                Built to back the work.
+                Built for the ecosystem.
               </h2>
               <p className="mt-5 leading-8 text-[#b7bfc8]">
                 $ELITE and $ELTZ are separate assets. Each has its own

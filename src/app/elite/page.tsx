@@ -5,7 +5,14 @@ import { CopyButton } from "@/components/CopyButton";
 import { PageHero } from "@/components/PageHero";
 import { SupplyBar } from "@/components/SupplyBar";
 import { TokenMark } from "@/components/TokenMark";
-import { allocation, contract, links, markets, tokenomics } from "@/lib/content";
+import {
+  allocation,
+  contract,
+  eliteBurnAddress,
+  links,
+  markets,
+  tokenomics,
+} from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "$ELITE",
@@ -113,12 +120,60 @@ export default function ElitePage() {
         </div>
 
         <div className="panel mt-6 rounded-[2rem] p-7 text-sm leading-7 text-[#b7bfc8]">
-          <p>
-            Burns: {tokenomics.year1Burn} in year 1 and {tokenomics.year2Burn}{" "}
-            in year 2. Of the locked tranche, {tokenomics.year2Burn} is
-            scheduled to be burnt and {tokenomics.lockedRelease} is scheduled
-            for release in year two. Figures are published project targets from
-            the official tokenomics page.
+          <p className="kicker">Current supply update — 2026</p>
+          <h3 className="font-display mt-3 text-2xl text-[#f3ead8]">
+            Planned reductions completed.
+          </h3>
+          <p className="mt-4">
+            The original $ELITE tokenomics and burn schedule above was
+            established when $ELITE was created in 2024 and is retained as part
+            of the project’s historical record.
+          </p>
+          <p className="mt-4">The planned token reductions have since been completed.</p>
+          <ul className="mt-5 list-disc space-y-2 pl-5">
+            <li>Original Minted Supply: 1,000,000,000,000 ELITE</li>
+            <li>Burned / Permanently Inaccessible: 750,000,000,000 ELITE</li>
+            <li>Percentage Burned: 75%</li>
+            <li>Non-Burned Supply: 250,000,000,000 ELITE</li>
+          </ul>
+          <p className="mt-5 text-xs tracking-wide text-[#9aa4af] uppercase">
+            Burn address
+          </p>
+          <p className="mt-2 font-mono text-xs break-all text-[#c8c1b2] md:text-sm">
+            {eliteBurnAddress}
+          </p>
+          <p className="mt-5 text-xs tracking-wide text-[#9aa4af] uppercase">
+            Official $ELITE contract
+          </p>
+          <p className="mt-2 font-mono text-xs break-all text-[#c8c1b2] md:text-sm">
+            {contract.address}
+          </p>
+          <div className="mt-4 flex min-w-0 flex-wrap gap-2">
+            <CopyButton value={eliteBurnAddress} label="Copy burn address" />
+            <CopyButton value={contract.address} label="Copy contract" />
+            <Button
+              href={`${links.basescan}?a=${eliteBurnAddress}`}
+              variant="ghost"
+              external
+            >
+              View burn on BaseScan
+            </Button>
+          </div>
+          <p className="mt-5">
+            Public Base blockchain records show 750 billion ELITE at the zero
+            address, representing 75% of the original minted supply. These
+            tokens are treated by the project as permanently inaccessible and
+            removed from usable circulation.
+          </p>
+          <p className="mt-4">
+            Because the tokens were transferred to the zero address rather than
+            necessarily being removed from the ERC-20 contract’s totalSupply()
+            value, some blockchain explorers and data providers may continue to
+            display the original minted supply of 1 trillion ELITE.
+          </p>
+          <p className="mt-4">
+            All supply and burn information can be independently verified
+            through public Base blockchain records.
           </p>
         </div>
       </section>

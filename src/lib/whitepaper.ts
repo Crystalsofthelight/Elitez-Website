@@ -19,13 +19,16 @@ export const whitepaperMeta = {
     "Elite Token ($ELITE) is a creator-led blockchain ecosystem on Base connecting music, gaming, digital entertainment, collectibles, merchandise, and community participation.",
 };
 
+export { eliteBurnAddress } from "./content";
+
 export const whitepaperFacts = [
   ["Token name", "Elite Token"],
   ["Ticker", "$ELITE"],
   ["Network", "Base"],
   ["Token standard", "ERC-20"],
   ["Original minted supply", "1,000,000,000,000 ELITE"],
-  ["Sent to burn address", "750,000,000,000 ELITE"],
+  ["Burned / permanently inaccessible", "750,000,000,000 ELITE"],
+  ["Percentage burned", "75%"],
   ["Non-burned supply", "250,000,000,000 ELITE"],
 ] as const;
 
@@ -173,31 +176,72 @@ export const whitepaperSections: WhitepaperSection[] = [
   {
     id: "supply",
     number: "6",
-    title: "Token supply",
+    title: "Token supply and on-chain burn",
     blocks: [
+      {
+        kind: "p",
+        text: "$ELITE was originally created with a maximum minted supply of:",
+      },
+      {
+        kind: "p",
+        text: "1,000,000,000,000 ELITE",
+      },
+      {
+        kind: "p",
+        text: "A total of:",
+      },
+      {
+        kind: "p",
+        text: "750,000,000,000 ELITE",
+      },
+      {
+        kind: "p",
+        text: "representing 75% of the original minted supply, has been permanently transferred to the Base zero address:",
+      },
+      {
+        kind: "p",
+        text: "0x0000000000000000000000000000000000000000",
+      },
+      {
+        kind: "p",
+        text: "Public Base blockchain records for the official $ELITE contract show that the zero address currently holds 750,000,000,000 ELITE.",
+      },
+      {
+        kind: "p",
+        text: "Accordingly:",
+      },
       {
         kind: "list",
         items: [
           "Original Minted Supply: 1,000,000,000,000 ELITE",
-          "Tokens Permanently Sent to Burn Address: 750,000,000,000 ELITE",
+          "Burned / Permanently Inaccessible: 750,000,000,000 ELITE",
+          "Percentage Burned: 75%",
           "Non-Burned Supply: 250,000,000,000 ELITE",
         ],
       },
       {
         kind: "p",
-        text: "A total of 750 billion ELITE, representing 75% of the original one-trillion-token supply, was permanently transferred to an inaccessible burn address.",
+        text: "Official $ELITE Contract: 0xeb9d07e8a5e1f8a2dbc5abc84d91aaa0301829e3",
       },
       {
         kind: "p",
-        text: "Following these burns, 250 billion ELITE remain outside the burn address.",
+        text: "Burn Address: 0x0000000000000000000000000000000000000000",
       },
       {
         kind: "p",
-        text: "Because the burns were performed by transferring tokens to an inaccessible address rather than necessarily reducing the ERC-20 contract’s totalSupply() value, some third-party data providers may continue to display the original minted supply. Other market-data providers, including DEXTools, currently recognize a 250 billion supply after accounting for burned tokens.",
+        text: "The 750 billion ELITE balance held at the zero address is publicly verifiable through Base blockchain records. Transfers to the zero address are treated by the project as permanently inaccessible and removed from usable circulation.",
       },
       {
         kind: "p",
-        text: "The project does not represent that reducing the available supply will cause an increase in the price, demand, liquidity, or value of ELITE.",
+        text: "Because these tokens were transferred to an inaccessible zero address rather than necessarily being removed from the ERC-20 contract’s totalSupply() value, some blockchain explorers and third-party data providers may continue to display the original minted supply of 1 trillion ELITE. Data providers that account for tokens held at the zero address may instead report a 250 billion non-burned supply.",
+      },
+      {
+        kind: "p",
+        text: "The project makes no representation or guarantee that reducing the number of non-burned tokens will increase the price, demand, liquidity, market capitalization, or value of $ELITE.",
+      },
+      {
+        kind: "p",
+        text: "All token supply and burn information can be independently verified through public Base blockchain records.",
       },
     ],
   },

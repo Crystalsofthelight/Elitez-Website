@@ -4,6 +4,7 @@ import { CopyButton } from "@/components/CopyButton";
 import { PageHero } from "@/components/PageHero";
 import { contract, links } from "@/lib/content";
 import {
+  eliteBurnAddress,
   whitepaperFacts,
   whitepaperMeta,
   whitepaperSections,
@@ -23,7 +24,11 @@ function Blocks({ blocks }: { blocks: WhitepaperBlock[] }) {
     <div className="mt-4 space-y-4 text-[1.05rem] leading-8 text-[#c8c1b2]">
       {blocks.map((block, index) => {
         if (block.kind === "p") {
-          return <p key={index}>{block.text}</p>;
+          return (
+            <p key={index} className="break-words">
+              {block.text}
+            </p>
+          );
         }
         if (block.kind === "list") {
           return (
@@ -121,6 +126,22 @@ export default function WhitePaperPage() {
             </Button>
             <Button href="/" variant="ghost">
               Official website
+            </Button>
+          </div>
+          <p className="mt-6 text-xs tracking-wide text-[#9aa4af] uppercase">
+            Burn address
+          </p>
+          <p className="mt-2 font-mono text-xs break-all text-[#c8c1b2] md:text-sm">
+            {eliteBurnAddress}
+          </p>
+          <div className="mt-4 flex min-w-0 flex-wrap gap-2">
+            <CopyButton value={eliteBurnAddress} label="Copy burn address" />
+            <Button
+              href={`${links.basescan}?a=${eliteBurnAddress}`}
+              variant="ghost"
+              external
+            >
+              View burn on BaseScan
             </Button>
           </div>
         </article>

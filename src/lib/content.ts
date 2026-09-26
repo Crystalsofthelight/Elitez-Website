@@ -6,6 +6,9 @@ export const site = {
     "Elitez is a creator-led ecosystem on Base: original music across major platforms, the $ELITE token, Elitez Chip ($ELTZ), and Dream Crafter — a wallet-connected arcade and creator app.",
 };
 
+export const eliteBurnAddress =
+  "0x0000000000000000000000000000000000000000";
+
 export const contract = {
   chain: "Base",
   symbol: "ELITE",
